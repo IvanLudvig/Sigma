@@ -96,11 +96,11 @@ public class MageClass {
 	   	     TextureRegion currentFrame1 = anim[1][side-1].getKeyFrame(Mage.stateTime, true); 
 	       	 batch.draw(currentFrame1, (mage.getWorldCenter().x-20/PTM)*PTM,( mage.getWorldCenter().y-15/PTM)*PTM, 35,60);
  	   }
- 	   if(feeta!=null){
+ 	   if(hata!=null){
 	   	     TextureRegion currentFrame2 = anim[2][side-1].getKeyFrame(Mage.stateTime, true); 
 	       	 batch.draw(currentFrame2, (mage.getWorldCenter().x-20/PTM)*PTM,( mage.getWorldCenter().y-15/PTM)*PTM, 35,60);
 	   }
- 	   if(hata!=null){
+ 	   if(feeta!=null){
 	   	     TextureRegion currentFrame3 = anim[3][side-1].getKeyFrame(Mage.stateTime, true); 
 	       	 batch.draw(currentFrame3, (mage.getWorldCenter().x-20/PTM)*PTM,( mage.getWorldCenter().y-15/PTM)*PTM, 35,60);
 	   }

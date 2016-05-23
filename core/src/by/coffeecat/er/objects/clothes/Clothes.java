@@ -13,7 +13,6 @@ public class Clothes extends Item{
 	
 	public Clothes(int def, final Sigma game) {
 		this.game = game;
-		chest = new Animation[5];
 		cat = 1;
 	}
 	
