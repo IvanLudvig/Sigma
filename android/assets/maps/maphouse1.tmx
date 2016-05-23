@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="left-up" width="15" height="15" tilewidth="32" tileheight="32" nextobjectid="4">
+ <tileset firstgid="1" name="pirate-themed-tilee" tilewidth="32" tileheight="32" tilecount="256">
+  <image source="pirate-themed-tilee.png" trans="ffffff" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="257" name="magecity" tilewidth="32" tileheight="32" tilecount="360">
+  <image source="magecity.png" trans="ffffff" width="256" height="1450"/>
+ </tileset>
+ <tileset firstgid="617" name="tora_vx_02" tilewidth="32" tileheight="32" tilecount="256">
+  <image source="tora_vx_02.png" trans="ffffff" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="873" name="steampunkish-tilec" tilewidth="32" tileheight="32" tilecount="256">
+  <image source="steampunkish-tilec.png" trans="ffffff" width="512" height="512"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="15" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxTYmRgUBpi2BKIrcjA1qN6R/UOQr0AMaEvpA==
+  </data>
+ </layer>
+ <layer name="Tile Layer 2" width="15" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYICAaiYGhpXMDHCQxQShQWI1QHY2E0IuD0kdCIDkdiKJVUHVgsRy0PTWoemtZmLACUD2VmPRa8jIwGBEBjZmxG3XKBgFAwUAAUQMUQ==
+  </data>
+ </layer>
+ <objectgroup name="Object Layer 1">
+  <object id="1" x="-2" y="89" width="411" height="4"/>
+  <object id="2" x="454" y="91" width="22" height="4"/>
+ </objectgroup>
+ <objectgroup name="Ladder" opacity="0.93">
+  <object id="3" x="418" y="-1" width="30" height="105"/>
+ </objectgroup>
+</map>

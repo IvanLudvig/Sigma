@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="left-up" width="45" height="40" tilewidth="32" tileheight="32" nextobjectid="42">
+ <tileset firstgid="1" name="tora_vx_02" tilewidth="32" tileheight="32" tilecount="256">
+  <image source="tora_vx_02.png" trans="ffffff" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="257" name="steampunkish-tilec" tilewidth="32" tileheight="32" tilecount="256">
+  <image source="steampunkish-tilec.png" trans="ffffff" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="513" name="magecity" tilewidth="32" tileheight="32" tilecount="360">
+  <image source="magecity.png" trans="ffffff" width="256" height="1450"/>
+ </tileset>
+ <tileset firstgid="873" name="tilee" tilewidth="32" tileheight="32" tilecount="256">
+  <image source="tilee.png" trans="ffffff" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="1129" name="tilea5" tilewidth="32" tileheight="32" tilecount="128">
+  <image source="tilea5.png" trans="ffffff" width="256" height="512"/>
+ </tileset>
+ <tileset firstgid="1257" name="pirate-themed-tilee" tilewidth="32" tileheight="32" tilecount="256">
+  <image source="pirate-themed-tilee.png" trans="ffffff" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="1513" name="rpg_maker_vx___big_windows_by_ayene_chan-d4ymmaw" tilewidth="32" tileheight="32" tilecount="96">
+  <image source="rpg_maker_vx___big_windows_by_ayene_chan-d4ymmaw.png" trans="ffffff" width="384" height="256"/>
+ </tileset>
+ <tileset firstgid="1609" name="rpg_maker_vx__modernrtp_tilec_by_painhurt-d3f7sm6" tilewidth="32" tileheight="32" tilecount="256">
+  <image source="rpg_maker_vx__modernrtp_tilec_by_painhurt-d3f7sm6.png" trans="ffffff" width="512" height="512"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="45" height="40">
+  <data encoding="base64" compression="zlib">
+   eJzt0rENwCAMRUGKpMj+WzAaU0SsgAsb6770SktXeD5jzMP2Tm+zYu5tXoH2IvcZMTN3Mn9vvoG5Zjf+MzNzNXN0zMzMzFVczPkxMzMzMzMzMzP3MP/Hb2aa
+  </data>
+ </layer>
+ <layer name="Tile Layer 2" width="45" height="40">
+  <data encoding="base64" compression="zlib">
+   eJztlbsKwjAYhVOFPp7v5HVXqy9gUZRuiqJjUXSULjro4Oagb6DokSJeSKuNl7RwPjiQpiH/F1L+CkE+JWsIkUPySAEpGrqNwinBr4xUkCpiIbWIzk2kJZlvY5/OD85fj+DsYX4jeddHBpL1Q6wdaXZWwYv5dyZjFhPnTFo+P4bf5MlxqdF5jdoNxI7osNXovEftLtKLyV2/wy5BrldWis5TjWc9KNZeJOh+ZP+efzO/6xtOgI9l3saOYp/5Nq/6hm0+PuvuM6dL7ZQ/dgM8joafsDWEEEIIIYQQQgghujgD22Awhw==
+  </data>
+ </layer>
+ <layer name="Tile Layer 3" width="45" height="40">
+  <data encoding="base64" compression="zlib">
+   eJztzjEKgDAQBdFNkfsfR2sjaOtBjLZGCwOmCCKIIqzKPPgs243It/VWxMcN6frsH6123bEpdoW4Od2Q/ctLm/dcXKsdAdzgtAMeVhiR0mhXXFOZbcDfNOnWqhXnOu0AAAAAAAAAqFsBCmUXOA==
+  </data>
+ </layer>
+ <objectgroup name="Object Layer 1">
+  <object id="2" x="3" y="127">
+   <polyline points="0,0 218,1"/>
+  </object>
+  <object id="3" x="289" y="124">
+   <polyline points="0,0 129,1"/>
+  </object>
+  <object id="4" x="420" y="130" width="22" height="22"/>
+  <object id="5" x="441" y="119" width="11" height="8"/>
+  <object id="8" x="449" y="135" width="25" height="15"/>
+  <object id="9" x="456" y="272" width="14" height="7"/>
+  <object id="10" x="458" y="397" width="11" height="14">
+   <ellipse/>
+  </object>
+  <object id="13" x="6" y="371" width="17" height="31">
+   <ellipse/>
+  </object>
+  <object id="14" x="3" y="336" width="19" height="29">
+   <ellipse/>
+  </object>
+  <object id="16" x="292" y="518" width="22" height="21">
+   <ellipse/>
+  </object>
+  <object id="18" x="325" y="517" width="20" height="23">
+   <ellipse/>
+  </object>
+  <object id="20" x="295" y="490" width="13" height="10"/>
+  <object id="21" x="291" y="474" width="22" height="5"/>
+  <object id="22" x="288" y="482" width="4" height="17"/>
+  <object id="23" x="312" y="482" width="6" height="12"/>
+  <object id="24" x="292" y="259" width="23" height="14"/>
+  <object id="25" x="324" y="257" width="24" height="18"/>
+  <object id="26" x="292" y="242" width="50" height="5"/>
+  <object id="27" x="301" y="293" width="6" height="6"/>
+  <object id="28" x="331" y="294" width="9" height="6"/>
+  <object id="30" x="107" y="520" width="10" height="7"/>
+  <object id="31" x="72" y="142" width="16" height="5"/>
+  <object id="32" x="41" y="141" width="16" height="6"/>
+  <object id="33" x="458" y="175" width="17" height="5"/>
+  <object id="34" x="225" y="114" width="60" height="35"/>
+  <object id="35" x="394" y="526" width="11" height="2"/>
+  <object id="36" x="481" y="386">
+   <polyline points="0,0 -1,157 -481,157 -481,-385 -3,-386 -1,-105 0,-99 31,-99 31,-386"/>
+  </object>
+ </objectgroup>
+ <objectgroup name="Bed">
+  <object id="38" x="51" y="480">
+   <polyline points="0,0 20,0 19,3"/>
+  </object>
+  <object id="39" x="427" y="482">
+   <polyline points="0,0 30,8"/>
+  </object>
+  <object id="40" x="74" y="289">
+   <polyline points="0,0 -30,9"/>
+  </object>
+ </objectgroup>
+ <objectgroup name="Ladder">
+  <object id="41" x="382" y="201" width="14" height="20"/>
+ </objectgroup>
+</map>

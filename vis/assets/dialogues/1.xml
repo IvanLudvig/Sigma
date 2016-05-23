@@ -1,0 +1,13 @@
+<dialogue id="1">
+  <message id="1"> Oooh, i'm so suprised, how did you get here?</message>
+  <choices>
+ccc
+    <choice id="I just read a book and it took me here...">
+I just read a book and it took me here...
+          <message>I've got here the same way.I've been here for ages... And all the time I've been searching for a way out.</message>
+    </choice>
+    <choice id="Wait, who are you?Where am I?What's happening, am I dreaming?">
+        Wait, who are you?Where am I?What's happening, am I dreaming?
+    </choice>
+  </choices>
+</dialogue>

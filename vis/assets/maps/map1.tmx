@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-up" width="48" height="37" tilewidth="32" tileheight="32" nextobjectid="176">
+ <tileset firstgid="1" name="tilee4" tilewidth="32" tileheight="32" tilecount="225">
+  <image source="tilee4.png" width="480" height="480"/>
+ </tileset>
+ <tileset firstgid="226" name="Woodland_Map_Guide_HighgrassDemo" tilewidth="32" tileheight="32" tilecount="84">
+  <image source="Woodland_Map_Guide_HighgrassDemo.png" width="400" height="225"/>
+ </tileset>
+ <tileset firstgid="310" name="tiles" tilewidth="32" tileheight="32" tilecount="640">
+  <image source="tiles.png" width="640" height="1024"/>
+ </tileset>
+ <tileset firstgid="950" name="magecity" tilewidth="32" tileheight="32" tilecount="360">
+  <image source="magecity.png" width="256" height="1450"/>
+ </tileset>
+ <tileset firstgid="1310" name="Plant" tilewidth="32" tileheight="32" tilecount="169">
+  <image source="plant repack.png" trans="ffffff" width="416" height="416"/>
+ </tileset>
+ <tileset firstgid="1479" name="tora_vx_02" tilewidth="32" tileheight="32" tilecount="256">
+  <image source="tora_vx_02.png" trans="ffffff" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="1735" name="steampunkish-tilec" tilewidth="32" tileheight="32" tilecount="256">
+  <image source="steampunkish-tilec.png" trans="ffffff" width="512" height="512"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="48" height="37">
+  <data encoding="base64" compression="zlib">
+   eJztk9sKgCAQBTeSLk/5735of9DFt1gs0sQs5sCAILKzKytCCCHkj+nN9f1cEO+Sg5LO+Nfj3+GP/8/9l1ZkDSAmzd8V9veOzc6ksBG+Tp11D6kzvIN3H1SN2HmHiPE/m+FdbKBGaX89w6fk2Nva/FP7esM/578c34d2cPyQf8wO1ugPAAAAAN9iA0NCBD8=
+  </data>
+ </layer>
+ <layer name="Tile Layer 3" width="48" height="37">
+  <data encoding="base64" compression="zlib">
+   eJzt1DEKgDAMQNEuvf+5lHoAS72LBbu4ZTPIe5Atw8+SUgAgp71+XfC21afpCHS1tdsS3XDOlj7nCjSNtTsS9QP/F/mvmUX+KwAAAETcbQwMpA==
+  </data>
+ </layer>
+ <layer name="Tile Layer 2" width="48" height="37">
+  <data encoding="base64" compression="zlib">
+   eJztlrlv1EAUhy15LRoowiVxBXIKxLULTQIJBJFAwiFxNNBBAk1SJuEQUAESZ0XBFS4JqEkCDQXQcTRAy99CwWfFFo9hxjNer3eR8E/65Lms+Xn0/OZ5XqFChQoV+t9V9j2v4pvn+5kb0MzfDTzvHtwP3PZpKnneQlhUmusvLf29Jh5T1ybJ5C/WMeaOa+af4/sFvIz8285hGV6Ww4rIU7PGWzj22f9z7Uf6n1L6a8bTanGu7bQ7oFOMTdOegdloLOkc3jLegpdWaIt8d2r8h2PflbVf6X9L8K/TejxtEF4rtLfAVjH2jvZ7+BCNyXNYy3Nd1J6PhwUOcVBLdeGpW4mLnfT7HGO9h/W9kf/FeF9i8T/O/ITCZIZvHsDnHiUuDtA/6Og/VJn9K7ASVlm8XGD+osIlB/9r8NMCrdAmvB2hfVQTF2nUxf7d0A4dOfnfiMdNsBnKKc7WRX3sv8sxBi6z7orCVYd3t+F5O/RAb439D7L/kKP/YdaNwB34Evzu27SXtYMwBPtq7D+NRvE6Bj8j/3G/UZL506Z5+HwAD6GE9x/BXHsqwb/trkySerfpJPOnTaH/JHSy1QymvBRKvdsaIVtOTMpL8m7T1RX11gm+4yQMwwicgtO+OS/Ju01XV9RDMv4neE7CGTgL5+C8b85L8m7bEejrirS1dVrJ+L/G8zrcgJtwC24bYkv97/cH+rpCra1rLRn/UzwfwWN4Ak/hmcG/7b+PpdbWeSjOg6/wMw0zMAuv4Y3Bo2stpNbWeciWB9PeEVnulGok86BOrrFS7fqsknlQJ1Os7Oadfs171dbZ1UrmwTQ6xDuHG3z/mpQlb+ed812UJW/nnfNdlCVv1yPn25Qlb9cj5xf6N/QLNA94Fg==
+  </data>
+ </layer>
+ <layer name="Tile Layer 4" width="48" height="37">
+  <data encoding="base64" compression="zlib">
+   eJzt0LENgDAMRcE03n8sskGQYBiUzukiGrB019nV028NAADeO2Lv91fV+6cr9d7F2qe8d496+1fvH6n3jPUGAADgGw8xOQxR
+  </data>
+ </layer>
+ <objectgroup name="Object Layer 1" opacity="0.9">
+  <object id="124" x="310" y="663" width="32" height="98"/>
+  <object id="125" x="502" y="631" width="20" height="132"/>
+  <object id="126" x="606" y="697" width="32" height="103"/>
+  <object id="127" x="465" y="785" width="34" height="67"/>
+  <object id="128" x="306" y="877" width="26" height="74"/>
+  <object id="129" x="51" y="837" width="26" height="143"/>
+  <object id="130" x="112" y="454" width="40" height="104"/>
+  <object id="131" x="401" y="326" width="44" height="121"/>
+  <object id="132" x="365" y="408" width="37" height="64"/>
+  <object id="133" x="278" y="325" width="20" height="145"/>
+  <object id="134" x="117" y="269" width="24" height="72"/>
+  <object id="135" x="15" y="625" width="28" height="55"/>
+  <object id="136" x="16" y="747" width="27" height="74"/>
+  <object id="137" x="683" y="309" width="33" height="55"/>
+  <object id="138" x="570" y="261" width="44" height="120"/>
+  <object id="139" x="359" y="256" width="50" height="46"/>
+  <object id="140" x="684" y="876" width="39" height="75"/>
+  <object id="142" x="228" y="990" width="28" height="119"/>
+  <object id="143" x="696" y="997" width="46" height="116"/>
+  <object id="144" x="800" y="738" width="37" height="125"/>
+  <object id="146" x="824" y="422" width="24" height="115"/>
+  <object id="148" x="500" y="942" width="28" height="32">
+   <ellipse/>
+  </object>
+  <object id="152" x="184" y="783" width="17" height="68"/>
+  <object id="155" x="1157" y="406" width="182" height="136"/>
+  <object id="156" x="1183" y="386" width="129" height="15"/>
+  <object id="157" x="866" y="369" width="10" height="110"/>
+  <object id="158" x="920" y="370" width="6" height="104"/>
+  <object id="159" x="929" y="264" width="9" height="83"/>
+  <object id="160" x="1014" y="264" width="10" height="87"/>
+  <object id="161" x="908" y="334" width="6" height="7"/>
+  <object id="162" x="1061" y="261" width="22" height="87"/>
+  <object id="163" x="903" y="329" width="16" height="18">
+   <ellipse/>
+  </object>
+  <object id="164" x="1254" y="324" width="23" height="23">
+   <ellipse/>
+  </object>
+  <object id="165" x="1394" y="327" width="28" height="23">
+   <ellipse/>
+  </object>
+  <object id="166" x="1219" y="259" width="21" height="87"/>
+  <object id="167" x="1281" y="265" width="6" height="85"/>
+  <object id="168" x="1371" y="263" width="4" height="89"/>
+  <object id="172" x="1158" y="546" width="45" height="61"/>
+  <object id="173" x="1258" y="547" width="72" height="52"/>
+ </objectgroup>
+ <objectgroup name="Door">
+  <object id="175" x="1217" y="547" width="30" height="39"/>
+ </objectgroup>
+</map>

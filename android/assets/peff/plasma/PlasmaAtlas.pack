@@ -1,0 +1,33 @@
+
+PlasmaAtlas.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+plamah
+  rotate: false
+  xy: 1, 35
+  size: 290, 290
+  orig: 290, 290
+  offset: 0, 0
+  index: -1
+plasma
+  rotate: false
+  xy: 293, 35
+  size: 290, 290
+  orig: 290, 290
+  offset: 0, 0
+  index: -1
+plasmap
+  rotate: false
+  xy: 585, 35
+  size: 290, 290
+  orig: 290, 290
+  offset: 0, 0
+  index: -1
+particle
+  rotate: false
+  xy: 1, 1
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1

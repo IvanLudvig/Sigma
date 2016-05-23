@@ -1,0 +1,36 @@
+<dialogue id="1">
+  <message id="1"> Oooh, i'm so suprised, how did you get here?</message>
+  <choices>
+ccc
+    <choice>
+I just read a book and it took me here...
+          <message>My name's Ryorik. I've got here the same way. I've been here for ages... 
+              And all the time I've been searching for a way out. I've found a house here
+              I have discovered that we're not on earth. We're even not in the same reality
+              in which we were...</message>
+              <choice>So are you going to continue sitting here?<message>I have no idea how to get back</message>
+                  <choice>Let's go on an adventure!<message>Ok. Let's go<finish></finish></message></choice>
+                  <choice>So what are we going to do?<message>We're going to explore this world<finish></finish></message></choice>
+                  </choice>
+                  <choice>I don't remember anything<message>That's bad</message>
+                      <choice>Let's go on an adventure!<message>Sure, come on<finish></finish></message></choice>
+                       <choice>Have you found a way out? <message>No, I've waiting for something all that time... Let's go exploring!<finish></finish></message></choice>
+                      </choice>
+    </choice>
+    <choice>
+        Wait, who are you? Where am I? What's happening, am I dreaming?
+          <message>This is like a parralel world. My name's Ryorik. I've got here the same way. I've been here for ages... 
+              And all the time I've been searching for a way out. I've found a house here
+              I have discovered that we're not on earth. We're even not in the same reality
+              in which we were...</message>
+              <choice>So are you going to continue sitting here?<message>I have no idea how to get back</message>
+                  <choice>Let's go on an adventure!<message>Ok. Let's go<finish></finish></message></choice>
+                  <choice>So what are we going to do?<message>We're going to explore this world<finish></finish></message></choice>
+                  </choice>
+                  <choice>I don't remember anything<message>That's bad</message>
+                      <choice>Let's go on an adventure!<message>Sure, come on<finish></finish></message></choice>
+                       <choice>Have you found a way out? <message>No, I've waiting for something all that time... Let's go exploring!<finish></finish></message></choice>
+                      </choice>
+    </choice>
+  </choices>
+</dialogue>
