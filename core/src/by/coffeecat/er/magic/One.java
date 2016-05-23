@@ -27,6 +27,7 @@ public class One {
 	
 	Sigma game;
 	
+	public int delete = 0;
 	
 	public One(float mana, float speed, float dam) {
 		batch = game.gama.batch;
@@ -61,6 +62,17 @@ public class One {
 		effect.setPosition(body.getPosition().x*Constants.PTM, body.getPosition().y*Constants.PTM);
 	    body.setTransform(body.getPosition(), angle);
 		effect.draw(batch, Gdx.graphics.getDeltaTime());
+		if(game.gama.world.isLocked()==false){
+			if(delete==1){
+				game.gama.world.destroyBody(body);
+	    		System.out.println("minus plasma");
+			}
+		}
+		
+	}
+	
+	public void destroy(){
+		delete = 1;
 	}
 	
 	protected Body createMagic(World world, Vector2 pos, ParticleEffect effect){

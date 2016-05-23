@@ -7,6 +7,7 @@ import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
 
+import by.coffeecat.er.magic.One;
 import by.coffeecat.er.objects.Item;
 import by.coffeecat.screens.SigmaGame;
 
@@ -60,11 +61,14 @@ public class CollisionListener implements ContactListener {
     		}
     		*/
     	if(contact.getFixtureB().getBody().getUserData()!=null){
-    		System.out.println("aga");
     		if((contact.getFixtureB().getBody().getUserData().getClass().getName().contains("by.coffeecat.er.objects")&&
     				(contact.getFixtureA().getBody()==game.gama.mage.mage))){
 				Item item = (Item)contact.getFixtureB().getBody().getUserData();
-				System.out.println("GGG");
+				//game.ui.inventory.addItem(item);
+    		}
+    		if(contact.getFixtureB().getBody().getUserData().getClass().getName().contains("by.coffeecat.er.magic")){
+				One one = (One)contact.getFixtureB().getBody().getUserData();
+				one.destroy();
 				//game.ui.inventory.addItem(item);
     		}
     	}
