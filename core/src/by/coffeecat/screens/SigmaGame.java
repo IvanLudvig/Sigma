@@ -52,6 +52,7 @@ public class SigmaGame extends ScreenAdapter{
     
     public static MageClass mage = new MageClass();
     public Vector2 suba = new Vector2();
+    public Body[] deletion = new Body[25];
    
 	Texture take;
     TiledMap map;
@@ -66,7 +67,6 @@ public class SigmaGame extends ScreenAdapter{
 		viewport.apply(true);
 		this.stage = stage;
 		renderer = new Box2DDebugRenderer();
-		
 		take = new Texture("ui/take.png");
 		current = mapa;
 		current.create(game, this.stage);
@@ -154,13 +154,33 @@ public class SigmaGame extends ScreenAdapter{
 
 	}
 
+	public int count = 0;
+	public void delete(Body body){
+		deletion[count]=body;
+		count++;
+	}
  
      public void update(){
 		 batch.setProjectionMatrix(camera.combined);
 		 //debugMatrix = batch.getProjectionMatrix().cpy().scale(PTM,PTM, 0);
 		 camera.update();
-	    	
+		 
+		    
 		 world.step(1f/60f, 6, 2);
+		 
+		 for(int i=0;i<deletion.length;i++){
+			 if(deletion[i]!=null){
+				 if(!world.isLocked()){
+					 world.destroyBody(deletion[i]);
+					 deletion[i]=null;
+				 }
+			 }
+		 }
+		 count = 0;
+		    
+
+
+		    
 		 touchpad.setBounds(camera.position.x-375, camera.position.y-225, 150, 150);
 			//renderer.render(world, debugMatrix);
 	    	

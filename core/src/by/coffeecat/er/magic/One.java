@@ -1,8 +1,10 @@
 package by.coffeecat.er.magic;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -24,10 +26,9 @@ public class One {
 	float mana;
 	float dam;
 	float PTM = Constants.PTM;
-	
+	float timer = 0f;
 	Sigma game;
-	
-	public int delete = 0;
+	FrameBuffer particleBuffer;
 	
 	public One(float mana, float speed, float dam) {
 		batch = game.gama.batch;
@@ -35,6 +36,8 @@ public class One {
 		effect.load(Gdx.files.internal("peff/plasma/1.p"), 
 		          Gdx.files.internal("peff/plasma"));
 		effect.start();
+		particleBuffer = new FrameBuffer(Format.RGBA8888,
+				Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), false);
 	}
 	
 	public void cast(Vector2 pos, Vector2 dest){
@@ -61,18 +64,17 @@ public class One {
 	public void render(){
 		effect.setPosition(body.getPosition().x*Constants.PTM, body.getPosition().y*Constants.PTM);
 	    body.setTransform(body.getPosition(), angle);
+	    particleBuffer.bind();
 		effect.draw(batch, Gdx.graphics.getDeltaTime());
-		if(game.gama.world.isLocked()==false){
-			if(delete==1){
-				game.gama.world.destroyBody(body);
-	    		System.out.println("minus plasma");
-			}
-		}
-		
+		FrameBuffer.unbind();
+		timer+=Gdx.graphics.getDeltaTime();
 	}
 	
 	public void destroy(){
-		delete = 1;
+		if(timer>1f){
+			effect.allowCompletion();
+			game.gama.delete(body);
+		}
 	}
 	
 	protected Body createMagic(World world, Vector2 pos, ParticleEffect effect){
