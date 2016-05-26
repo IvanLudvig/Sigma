@@ -2,9 +2,10 @@ package by.coffeecat.er.ui;
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -50,8 +51,8 @@ public class Inventory {
 	public Image equip;
 	
 	Sigma game;
-	int here = 1;
-	
+	int here = 0;
+	Music music;
 
 	public Inventory(ArrayList<Array<Item>> thing, Sigma game, Stage stage) {
 		this.stage = stage;
@@ -184,7 +185,12 @@ public class Inventory {
 	       open.addListener(new ClickListener(){
 	            @Override
 	            public void clicked(InputEvent event, float x, float y) {
+	        		music = Gdx.audio.newMusic(Gdx.files.internal("music/inv.mp3"));
+	        		music.play();
+	        		music.setLooping(false);
+	        		music.setVolume(0.6f);
 	            	switch(here){
+	            	
 	            		case 0:
 	            			here=1;
 	            			stage.addActor(win);

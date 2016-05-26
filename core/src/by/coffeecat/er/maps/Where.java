@@ -20,6 +20,7 @@ import by.coffeecat.er.CollisionListener;
 import by.coffeecat.er.Constants;
 import by.coffeecat.er.MapBodyBuilder;
 import by.coffeecat.er.Sigma;
+import by.coffeecat.er.dialog.Conversation;
 import by.coffeecat.screens.SigmaGame;
 
 public class Where extends Mapa{

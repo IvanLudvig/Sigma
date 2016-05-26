@@ -1,6 +1,8 @@
 package by.coffeecat.er.magic;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -29,6 +31,7 @@ public class One {
 	float timer = 0f;
 	Sigma game;
 	FrameBuffer particleBuffer;
+	Music music;
 	
 	public One(float mana, float speed, float dam) {
 		batch = game.gama.batch;
@@ -44,6 +47,11 @@ public class One {
 		if(dest.y>pos.y){
 			pos.y+=10;
 		}
+		music = Gdx.audio.newMusic(Gdx.files.internal("peff/plasma/sound.mp3"));
+		music.play();
+		music.setLooping(false);
+		music.setVolume(0.6f);
+		
 		body = this.createMagic(game.gama.world, pos, effect);
 		angle = (float) Math.atan2(dest.x, dest.y);
 		//b[count].setTransform(pos.x/Constants.PTM, pos.y/Constants.PTM, angle[count]);
@@ -64,9 +72,8 @@ public class One {
 	public void render(){
 		effect.setPosition(body.getPosition().x*Constants.PTM, body.getPosition().y*Constants.PTM);
 	    body.setTransform(body.getPosition(), angle);
-	    particleBuffer.bind();
+	    batch.setBlendFunction(GL20.GL_ONE, GL20.GL_ONE_MINUS_SRC_ALPHA);
 		effect.draw(batch, Gdx.graphics.getDeltaTime());
-		FrameBuffer.unbind();
 		timer+=Gdx.graphics.getDeltaTime();
 	}
 	

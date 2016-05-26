@@ -5,6 +5,7 @@ import java.util.Vector;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -19,7 +20,6 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import by.coffeecat.er.Constants;
 import by.coffeecat.er.Sigma;
-import by.coffeecat.er.maps.Map1;
 import by.coffeecat.light.Art;
 import by.coffeecat.light.LightningBolt;
 
@@ -39,6 +39,8 @@ public class Main extends ScreenAdapter {
 	TextButton newgame;
 	TextButton load;
 	
+	Music music;
+	
 	public Main(Sigma sigma) {
 		game = sigma;
 		// Create assets manager
@@ -48,6 +50,11 @@ public class Main extends ScreenAdapter {
 		camera = game.camera;
 		viewport = game.viewport;
 		stage = new Stage(viewport);
+		
+		music = Gdx.audio.newMusic(Gdx.files.internal("music/menu.mp3"));
+		music.play();
+		music.setLooping(true);
+		music.setVolume(0.4f);
 		
 		newgame = new TextButton("New Game", skin);
 		newgame.setText("New Game");
@@ -67,6 +74,7 @@ public class Main extends ScreenAdapter {
 	        @Override
 	        public void changed (ChangeEvent event, Actor actor) {
 	            game.setScreen(game.gama);
+	            music.stop();
 	        }
 	    });
 	    
@@ -74,6 +82,7 @@ public class Main extends ScreenAdapter {
 	        @Override
 	        public void changed (ChangeEvent event, Actor actor) {
 	            game.setScreen(game.gama);
+	            music.stop();
 	        }
 	    });
 	    
@@ -134,6 +143,11 @@ public class Main extends ScreenAdapter {
 		}
 		batch.end();
 		return;
+	}
+	
+	@Override
+	public void dispose(){
+		music.dispose();
 	}
 	
 
