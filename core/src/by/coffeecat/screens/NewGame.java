@@ -49,6 +49,7 @@ public class NewGame extends ScreenAdapter{
 		this.game = gamee;
 		batch = game.batch;
 		camera = game.camera;
+		camera.setToOrtho(false);
 		viewport = game.viewport;
 		this.stage = game.newGameStage;
 		this.music = music;

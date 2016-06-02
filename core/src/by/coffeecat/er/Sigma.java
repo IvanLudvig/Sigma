@@ -32,9 +32,9 @@ import by.coffeecat.screens.SigmaGame;
 
 public class Sigma extends Game {
 	
-	public static SpriteBatch batch;
+	public SpriteBatch batch;
 	public static World world;
-	public static OrthographicCamera camera;
+	public OrthographicCamera camera;
 	public static Viewport viewport; 
 	SigmaGame eg;
 	public static BitmapFont font;

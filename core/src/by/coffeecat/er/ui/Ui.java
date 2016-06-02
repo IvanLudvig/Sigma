@@ -36,6 +36,7 @@ public class Ui {
 	public ArrayList<Array<Item>> maj = new ArrayList<Array<Item>>(5);
 	
 	public Ui(Sigma game, Stage stage, ArrayList<Array<Item>> inven) {
+		end = game;
 		if(inven!=null){
 			maj=inven;
 		}
@@ -54,10 +55,10 @@ public class Ui {
 		health = new Texture("ui/health.png");
 		mana = new Texture("ui/mana.png");
 		font = game.font;
-		viewport = end.viewport;
+		viewport = game.viewport;
 		this.stage = stage;
 		this.game = game;
-		camera = end.camera;
+		camera = game.camera;
 		l = new Table();
 		inventory = new Inventory(maj, game, stage);
 		stage.addActor(l);

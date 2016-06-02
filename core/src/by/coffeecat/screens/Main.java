@@ -44,14 +44,12 @@ public class Main extends ScreenAdapter {
 	static Music music;
 	
 	public Main(Sigma sigma, Stage staga) {
-		game = sigma;
+		this.game = sigma;
 		batch = game.batch;
-		AssetManager assetManager = new AssetManager();
-		batch = game.batch;
-		world = game.world;
 		camera = game.camera;
+		camera.setToOrtho(false);
 		viewport = game.viewport;
-		this.stage = staga;
+		stage = game.menuStage;
 		
 		bg = new Texture(Gdx.files.internal("menubg.png"));
 		music = Gdx.audio.newMusic(Gdx.files.internal("music/menu.mp3"));
@@ -67,12 +65,12 @@ public class Main extends ScreenAdapter {
 		load.setText("Load Game");
 		load.setPosition(330, 240);
 		
+		/*
 		Art.load(assetManager);
 		assetManager.finishLoading();
 		Art.assignResource(assetManager);
+		*/
 
-		camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		camera.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 	    newgame.addListener(new ChangeListener() {
 	        @Override
 	        public void changed (ChangeEvent event, Actor actor) {
@@ -101,6 +99,7 @@ public class Main extends ScreenAdapter {
 	
 	@Override
 	public void render(float delta) {
+		/*
 		if(Gdx.input.justTouched() ) {
 			int i = (int)(Math.random()*3)+1;
 			for(int b = 0;b<i;b++){
@@ -108,11 +107,16 @@ public class Main extends ScreenAdapter {
 						new Vector2(Gdx.input.getX(), Gdx.input.getY())));
 			}
 		}
-		
-		
-		updateBolts();
-		drawScene();
-		removeCompleted();
+		*/
+		Gdx.gl.glClearColor(0,0,0,0);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        batch.begin();
+        batch.setProjectionMatrix(camera.combined);
+		batch.draw(bg, 0, 0, 750, 480);
+		batch.end();
+		//updateBolts();
+		//drawScene();
+		//removeCompleted();
 		stage.draw();
 		stage.act(delta);
 	}
@@ -143,6 +147,7 @@ public class Main extends ScreenAdapter {
 		for(int i=0; i<bolts.size(); i++){
 			bolts.get(i).draw(batch);
 		}
+		
 		batch.end();
 	}
 	
