@@ -1,5 +1,7 @@
 package by.coffeecat.er.maps;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -7,7 +9,6 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -20,7 +21,6 @@ import by.coffeecat.er.CollisionListener;
 import by.coffeecat.er.Constants;
 import by.coffeecat.er.MapBodyBuilder;
 import by.coffeecat.er.Sigma;
-import by.coffeecat.er.dialog.Conversation;
 import by.coffeecat.screens.SigmaGame;
 
 public class Where extends Mapa{
@@ -37,6 +37,7 @@ public class Where extends Mapa{
 	
 	Texture Itxt;
 	Image I;
+	Music music;
 	
 	    public void create(Sigma sigma, Stage stage){
 	    	game = sigma;
@@ -62,16 +63,25 @@ public class Where extends Mapa{
 			world.setContactListener(new CollisionListener());
 			//game.gama.camera.position.set(400, 1800, 0);// Всё равно ничего не работает
 			
+    		music = Gdx.audio.newMusic(Gdx.files.internal("music/I.mp3"));
+    		
 			I.setSize(800, 480);
 			
 			I.addAction(Actions.fadeOut(5f));
 			stage.addActor(I);
 	    }
 
+	    float timer;
+	    
 		@Override
 	    public void render(float delta){
+			timer+=Gdx.graphics.getDeltaTime();
 			game.putWorld(world);
 			I.setPosition(game.gama.camera.position.x-400, game.gama.camera.position.y-240);
+
+    		music.play();
+    		music.setLooping(true);
+    		music.setVolume(0.6f);
 	    }
 		
 		

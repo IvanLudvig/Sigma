@@ -48,6 +48,12 @@ public class Sigma extends Game {
 	
 	public Stage ctrl;
 	public Stage uistage;
+	public static Stage menuStage;
+	public static Stage newGameStage;
+	public Stage loadGameStage;
+	
+	
+	public Profile profile;
 	
 	
 	
@@ -70,6 +76,9 @@ public class Sigma extends Game {
 		viewport.apply(true);
 		ctrl = new Stage(viewport);
 		uistage = new Stage(viewport);
+		menuStage = new Stage(viewport);
+		newGameStage = new Stage(viewport);
+		loadGameStage = new Stage(viewport);
 		
 		//font = new BitmapFont(Gdx.files.internal("dialogues/font.fnt"),Gdx.files.internal("dialogues/font.png"), false);
 		skin = new Skin(Gdx.files.internal("skin/uiskin.json"));	
@@ -77,10 +86,11 @@ public class Sigma extends Game {
 		font = skin.getFont("fonta20");
 		ui = new Ui(this, ctrl, null);
 		gama = new SigmaGame(this, maps[0], uistage);
-		setScreen(new Main(this));
+		setScreen(new Main(this, menuStage));
 		
 		inputMultiplexer.addProcessor(ctrl);
 		inputMultiplexer.addProcessor(uistage);
+		
 		Gdx.graphics.requestRendering();
 		Gdx.input.setInputProcessor(inputMultiplexer);
 	}
@@ -108,13 +118,26 @@ public class Sigma extends Game {
 	public void saveGame(){
 		Json json = new Json();
 
-		String mag = json.toJson(mage);
+		String mag = json.toJson(gama.mage);
 		String it = json.toJson(ui.inventory.maj);
+		String map = json.toJson(gama.current);
+
 		mag = Base64Coder.encodeString( mag );
 		it = Base64Coder.encodeString( it );
+		map = Base64Coder.encodeString( it );
 
-		FileHandle handle = Gdx.files.local("saveGame.sav");
-		handle.writeString(mag, false);
+		FileHandle magf = Gdx.files.local("magf.sav");
+		magf.writeString(mag, false);
+		
+		FileHandle itf = Gdx.files.local("itf.sav");
+		itf.writeString(mag, false);
+		
+		FileHandle mapf = Gdx.files.local("mapf.sav");
+		mapf.writeString(mag, false);
+	}
+	
+	public void loadGame(){
+		
 	}
 	
 	

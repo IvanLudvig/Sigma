@@ -66,7 +66,7 @@ public class Inventory {
 		table.setSize(300, 200);
 		equip = new Image(new TextureRegionDrawable( new TextureRegion((new Texture("ui/equip.png")))));
 		win.setSize(300, 300);
-		
+		music = Gdx.audio.newMusic(Gdx.files.internal("music/inv.mp3"));
 		addList();
 		 
 		win.setPosition(game.camera.position.x+480, game.camera.position.y-100);
@@ -144,6 +144,16 @@ public class Inventory {
 			for(int g=0;g<maj.get(i).size;g++){
 				if(maj.get(i).get(g)==item){
 					maj.get(i).removeIndex(g);
+					if(item==game.gama.mage.chesta){
+						game.gama.mage.chesta = null;
+					}
+					if(item==game.gama.mage.feeta){
+						game.gama.mage.feeta = null;
+					}
+					if(item==game.gama.mage.hata){
+						game.gama.mage.hata = null;
+					}
+
 					recreate();
 					System.out.println("Yes");
 				}
@@ -185,7 +195,6 @@ public class Inventory {
 	       open.addListener(new ClickListener(){
 	            @Override
 	            public void clicked(InputEvent event, float x, float y) {
-	        		music = Gdx.audio.newMusic(Gdx.files.internal("music/inv.mp3"));
 	        		music.play();
 	        		music.setLooping(false);
 	        		music.setVolume(0.6f);

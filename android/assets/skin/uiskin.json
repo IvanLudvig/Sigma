@@ -30,9 +30,9 @@ com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
 		fontColor: { a: 1, b: 0.7, g: 0.7, r: 0.7 },
 		downFontColor: { a: 1, g: 1 },
 		disabledFontColor: { a: 1, b: 0.8, g: 0.8, r: 0.8 },
-		up: 9p,
-		down: 9p,
-		over: 9p
+		up: 9p1,
+		down: 9p1,
+		over: 9p1
 	}
 },
 com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle: {
@@ -51,32 +51,32 @@ com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: {
 },
 com.badlogic.gdx.scenes.scene2d.ui.Window$WindowStyle: {
 	default: {
-		background: 9pwin2,
+		background: 9pwin1,
 		titleFont: fonta24,
 		titleFontColor: { a: 1, b: 1, g: 1, r: 1 }
 	},
 	dialog: {
-		background: 9pwin2,
+		background: 9pwin1,
 		titleFont: fonta20,
 		titleFontColor: { a: 1, b: 1, g: 1, r: 1 }
 	}
 },
 com.badlogic.gdx.scenes.scene2d.ui.TextField$TextFieldStyle: {
 	default: {
-		font: default-font,
+		font: fonta24,
 		fontColor: { a: 1, b: 1, g: 1, r: 1 },
-		background: textfield,
+		background: 9p1,
 		cursor: cursor,
 		selection: selection
 	}
 },
 com.badlogic.gdx.scenes.scene2d.ui.ScrollPane$ScrollPaneStyle: {
 	default: {
-		background: default-rect,
-		hScroll: default-scroll,
-		hScrollKnob: default-round-large,
-		vScroll: default-scroll,
-		vScrollKnob: default-round-large
+		background: 9p1,
+		hScroll: default-round-large,
+		hScrollKnob: default-scroll,
+		vScroll: default-round-large,
+		vScrollKnob: default-scroll
 	}
 },
 com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
@@ -85,7 +85,7 @@ com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
 		fontColor: { a: 1, b: 0.7, g: 0.7, r: 0.7 }
 	},
 	default: {
-		font: font_calibri_16pt,
+		font: fonta24,
 		fontColor: { a: 1, b: 1, g: 1, r: 1 }
 	},
 	error: {
@@ -99,11 +99,11 @@ com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
 },
 com.badlogic.gdx.scenes.scene2d.ui.List$ListStyle: {
 	default: {
-		font: font_calibri_16pt,
+		font: fonta20,
 		fontColorSelected: { a: 1, b: 1, g: 1, r: 1 },
 		fontColorUnselected: { a: 1, b: 1, g: 1, r: 1 },
-		selection: default-select-selection,
-		background: default-scroll
+		selection: default-round-down,
+		background: dialogDim
 	},
 	dimmed: {
 		font: default-font,
@@ -130,13 +130,13 @@ com.badlogic.gdx.scenes.scene2d.ui.Slider$SliderStyle: {
 },
 com.badlogic.gdx.scenes.scene2d.ui.SelectBox$SelectBoxStyle: {
 	default: {
-		font: font_calibri_16pt,
-		fontColor: { a: 1, g: 1 },
+		font: fonta20,
+		fontColor: { a: 1, r: 1 },
 		disabledFontColor: { a: 1, b: 0.8, g: 0.8, r: 0.8 },
-		background: 9p,
+		background: 9p1,
 		scrollStyle: default,
 		listStyle: default,
-		backgroundOpen: 9pwin,
+		backgroundOpen: 9p1,
 		backgroundDisabled: default-round-down
 	}
 }

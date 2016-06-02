@@ -8,6 +8,7 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
@@ -27,30 +28,32 @@ public class Main extends ScreenAdapter {
 	
 	Vector<LightningBolt> bolts = new Vector<LightningBolt>();
 
-	public static SpriteBatch batch;
-	public static World world;
-	public static OrthographicCamera camera;
+	public SpriteBatch batch;
+	public World world;
+	public OrthographicCamera camera;
 	Viewport viewport; 
-	public static Sigma game;
+	public Sigma game;
 	float PTM = Constants.PTM;
 	Stage stage;
-	static Skin skin = Sigma.skin;
+	Skin skin = Sigma.skin;
 	
 	TextButton newgame;
 	TextButton load;
 	
-	Music music;
+	public Texture bg;
+	static Music music;
 	
-	public Main(Sigma sigma) {
+	public Main(Sigma sigma, Stage staga) {
 		game = sigma;
-		// Create assets manager
+		batch = game.batch;
 		AssetManager assetManager = new AssetManager();
 		batch = game.batch;
 		world = game.world;
 		camera = game.camera;
 		viewport = game.viewport;
-		stage = new Stage(viewport);
+		this.stage = staga;
 		
+		bg = new Texture(Gdx.files.internal("menubg.png"));
 		music = Gdx.audio.newMusic(Gdx.files.internal("music/menu.mp3"));
 		music.play();
 		music.setLooping(true);
@@ -58,11 +61,11 @@ public class Main extends ScreenAdapter {
 		
 		newgame = new TextButton("New Game", skin);
 		newgame.setText("New Game");
-		newgame.setPosition(300, 340);
+		newgame.setPosition(330, 340);
 		
 		load = new TextButton("Load Game", skin);
 		load.setText("Load Game");
-		load.setPosition(300, 240);
+		load.setPosition(330, 240);
 		
 		Art.load(assetManager);
 		assetManager.finishLoading();
@@ -73,8 +76,9 @@ public class Main extends ScreenAdapter {
 	    newgame.addListener(new ChangeListener() {
 	        @Override
 	        public void changed (ChangeEvent event, Actor actor) {
-	            game.setScreen(game.gama);
-	            music.stop();
+	            game.setScreen(new NewGame(game, music));
+	            System.out.println("from main with evilness");
+	            game.inputMultiplexer.removeProcessor(stage);
 	        }
 	    });
 	    
@@ -82,14 +86,17 @@ public class Main extends ScreenAdapter {
 	        @Override
 	        public void changed (ChangeEvent event, Actor actor) {
 	            game.setScreen(game.gama);
+	            System.out.println("from main with evilness");
 	            music.stop();
+	            game.inputMultiplexer.removeProcessor(stage);
 	        }
 	    });
 	    
 		stage.addActor(newgame);
 		stage.addActor(load);
 		
-		game.inputMultiplexer.addProcessor(stage);
+        game.inputMultiplexer.addProcessor(stage);
+		
 	}
 	
 	@Override
@@ -103,7 +110,6 @@ public class Main extends ScreenAdapter {
 		}
 		
 		
-		// draw the Scene
 		updateBolts();
 		drawScene();
 		removeCompleted();
@@ -127,27 +133,23 @@ public class Main extends ScreenAdapter {
 	}
 
 	void drawScene(){
-
+		Gdx.gl.glClearColor(0,0,0,0);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
-        camera.update();
-        
-        // Start rendering
         batch.begin();
-        
         batch.setProjectionMatrix(camera.combined);
-
+		batch.draw(bg, 0, 0, 750, 480);
 		
 		for(int i=0; i<bolts.size(); i++){
 			bolts.get(i).draw(batch);
 		}
 		batch.end();
-		return;
 	}
 	
 	@Override
 	public void dispose(){
 		music.dispose();
+		stage.dispose();
 	}
 	
 

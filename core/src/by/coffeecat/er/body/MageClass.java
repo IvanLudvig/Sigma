@@ -1,6 +1,7 @@
 package by.coffeecat.er.body;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -27,9 +28,9 @@ public class MageClass {
 	Animation chest[] = new Animation[4];
 	Animation body[] = new Animation[4];
 
-	Clothes chesta;
-	Clothes feeta;
-	Clothes hata;
+	public Clothes chesta;
+	public Clothes feeta;
+	public Clothes hata;
 	
 	Animation hatback;
 	Animation hatleft;
@@ -57,11 +58,14 @@ public class MageClass {
 	
 	public int allmana = 500;
 	public int mana = allmana;
+	public float reRate = 1f;
 	
 	public int allstrength = 300;
 	public int strength = allstrength;
 
 	public Magic magico[] = new Magic[10];
+	
+	Music[] footsteps = new Music[10];
 	
 	public void create(World world, Sigma game, SpriteBatch batch){
 		mage = Mage.createMage(world);
@@ -73,6 +77,12 @@ public class MageClass {
 		body[1] = Mage.MudrecAnim(new Texture("items/body/bodback.png"), 3, 1);
 		body[2] = Mage.MudrecAnim(new Texture("items/body/bodleft.png"), 3, 1);
 		body[3]= Mage.MudrecAnim(new Texture("items/body/bodright.png"), 3, 1);
+		
+		for(int i =0; i<footsteps.length;i++){
+    		footsteps[i] = Gdx.audio.newMusic(Gdx.files.internal("music/fs/"+i+".mp3"));
+    		footsteps[i].setLooping(false);
+    		footsteps[i].setVolume(0.1f);
+		}
 		
 		anim[0]=body;
 		anim[1]=chest;
@@ -106,17 +116,26 @@ public class MageClass {
 	   }
  	   if(walking){
  		   Mage.stateTime += Gdx.graphics.getDeltaTime(); 
+ 		   footsteps[7].play();
  	   }
 
    	 batch.end();
    	 updatePlease(Gdx.graphics.getDeltaTime());
     }
     
+    float reTime = 0f;
+    
     public void updatePlease(float delta){
      	timer+=delta;
+     	reTime+=delta;
      	magico[1].render();
-     	if(mana>allmana){
+     	if(mana>=allmana){
      		mana = allmana;
+     	}else{
+     		if(reTime>reRate*1.5f){
+     			mana+=1;
+     			reTime = 0;
+     		}
      	}
      	if(hp>allhp){
      		hp = allhp;

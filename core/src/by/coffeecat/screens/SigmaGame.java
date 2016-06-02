@@ -103,7 +103,7 @@ public class SigmaGame extends ScreenAdapter{
 		//current.rayHandler.updateAndRender();
 		game.putMage(mage);
 		current.render(delta);
-		renderer.render(world, batch.getProjectionMatrix().cpy().scale(PTM,PTM, 0));
+		//renderer.render(world, batch.getProjectionMatrix().cpy().scale(PTM,PTM, 0));
 		
 	    batch.begin();
 	    Array<Body> bodies = new Array<Body>(world.getBodyCount()+50);
@@ -174,6 +174,9 @@ public class SigmaGame extends ScreenAdapter{
 					 world.destroyBody(deletion[i]);
 					 deletion[i]=null;
 				 }
+			 }
+			 if(i-deletion.length==1){
+				 count = 0;
 			 }
 		 }
 		 count = 0;
