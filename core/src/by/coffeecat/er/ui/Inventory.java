@@ -29,7 +29,7 @@ public class Inventory {
 	
 	//Tables
 	//public Table[] table = new Table[4]; //ТАМ 3!!!
-	
+	public InProperties props;
 	public Table table;
 	public Window win;
 	
@@ -92,8 +92,6 @@ public class Inventory {
 			for(int i=0;i<maj.get(g).size;i++){
 				if(maj.get(g).get(i)!=null){
 					table.add(maj.get(g).get(i).btn).width(40).height(40).top().left();
-					//win.add(maj.get(g).get(i).btn).width(40).height(40).top();
-					System.out.println("Туттт");
 				}
 			}
 		}
@@ -106,6 +104,7 @@ public class Inventory {
 		win.add(equip).width(50).height(50);
 		stage.addActor(win);	
 		
+		props = new InProperties(maj);
 		//open.debug();
 		stage.addActor(open);
 
@@ -114,12 +113,14 @@ public class Inventory {
 		
 
 	public void render(){
-		stage.draw();
-		stage.act();
-		open.setPosition(game.camera.position.x+180+150, game.camera.position.y+200);
-		if(here==0){
-				win.remove();
-    		//win.addAction(Actions.moveTo(game.camera.position.x+250, game.camera.position.y-150, 1f));
+		if(game.gama.paused == 0){
+			stage.draw();
+			stage.act();
+			open.setPosition(game.camera.position.x+180+110, game.camera.position.y+200);
+			if(here==0){
+					win.remove();
+	    		//win.addAction(Actions.moveTo(game.camera.position.x+250, game.camera.position.y-150, 1f));
+			}
 		}
 		
 	}
@@ -128,6 +129,7 @@ public class Inventory {
 		System.out.println(item.cat);
 		System.out.println("No");
 		maj.get(item.cat).add(item);
+		props = new InProperties(maj);
 
 		recreate();
 		}
@@ -155,6 +157,7 @@ public class Inventory {
 					}
 
 					recreate();
+					props = new InProperties(maj);
 					System.out.println("Yes");
 				}
 			}

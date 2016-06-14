@@ -1,37 +1,57 @@
 package by.coffeecat.er;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Base64Coder;
 import com.badlogic.gdx.utils.Json;
+import com.badlogic.gdx.utils.JsonWriter.OutputType;
+
+import by.coffeecat.er.body.HumanProperties;
+import by.coffeecat.er.objects.Item;
 
 public class Profile {
 
-	static String name;
+	public static String name;
 	Sigma game;
-	
 	String mag;
 	String it;
 	String map;
-	String whole;
-	
 	public String gender;
 	
 	Json json;
 	
-	FileHandle wholef = Gdx.files.local("wholef.sav");
-	FileHandle magf = Gdx.files.local("magf.sav");
-	FileHandle itf = Gdx.files.local("itf.sav");
-	FileHandle mapf = Gdx.files.local("mapf.sav");
-	FileHandle namef = Gdx.files.local("namef.sav");
+	FileHandle magf;
+	FileHandle itf;
+	FileHandle mapf;
+	FileHandle namef;
+	FileHandle gn;
 	
+	int number;
 	
-	public Profile() {
+	ArrayList<Array<Item>> maj;
+	
+	public Profile(Sigma game, String name, String gender) {
+		this.game = game;
 		//save();
+		number = game.prohand.getCount();
+		this.name = name;
+		this.gender = gender;
+		json = new Json();
 		
-		//whole = json.toJson(whole);
-		//whole = Base64Coder.encodeString(whole);
-		//wholef.writeString(whole, false);
+		magf = Gdx.files.local(game.prohand.getCount()+"magf.sav");
+		itf = Gdx.files.local(game.prohand.getCount()+"itf.sav");
+		mapf = Gdx.files.local(game.prohand.getCount()+"mapf.sav");
+		gn = Gdx.files.local(game.prohand.getCount()+"gn.sav");
+		namef = Gdx.files.local(game.prohand.getCount()+".sav");
+		
+		name = json.toJson(name);
+		name = Base64Coder.encodeString(name);
+		namef.writeString(name, false);
+		
+		//save();
 	}
 	
 	public void newGame(String name){
@@ -40,20 +60,17 @@ public class Profile {
 	
 	public void save(){
 		json = new Json();
+		json.setOutputType(OutputType.json);
+		for(int i = 0;i<game.maps.length;i++){
+			if(game.gama.current == game.maps[i]){
+				mapf.writeString(Base64Coder.encodeString(json.toJson(i)), false);
+			}
+		}
+		gn.writeString(Base64Coder.encodeString(json.toJson(gender)), false);
+		itf.writeString(Base64Coder.encodeString(json.toJson(game.ui.inventory.props)), false);
+		magf.writeString(Base64Coder.encodeString(json.toJson(game.gama.mage.props)), false);
+		System.out.println(json.toJson(game.gama.mage.props));
 
-		name = json.toJson(name);
-		mag = json.toJson(game.gama.mage);
-		it = json.toJson(game.ui.inventory.maj);
-		map = json.toJson(game.gama.current);
-
-		mag = Base64Coder.encodeString( mag );
-		it = Base64Coder.encodeString( it );
-		map = Base64Coder.encodeString( it );
-
-		magf.writeString(mag, false);
-		itf.writeString(it, false);
-		mapf.writeString(map, false);
-		namef.writeString(name, false);
 	}
 	
 	public void load(){
@@ -65,6 +82,17 @@ public class Profile {
 		mag = Base64Coder.decodeString(mag);
 		it = Base64Coder.decodeString(it);
 		map = Base64Coder.decodeString(map);
+		
+		name = json.fromJson(String.class, name);
+		gender = json.fromJson(String.class, Base64Coder.decodeString(gn.readString()));
+		game.gama.current = game.maps[json.fromJson(int.class, map)];
+		game.gama.mage.applyProps(json.fromJson(HumanProperties.class, mag));
+		game.ui.inventory.maj = game.nor.nor(json.fromJson(ArrayList.class, it));
+		
+	}
+	
+	public void loadFrom(FileHandle magf, FileHandle itf, FileHandle mapf, FileHandle namef, FileHandle gn){
+		
 	}
 
 }

@@ -34,6 +34,11 @@ public abstract class Mapa {
 	
 	public void dispose(){
 	}
+
+	public void createLights() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 
 }

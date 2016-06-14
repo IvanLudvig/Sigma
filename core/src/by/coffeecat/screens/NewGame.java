@@ -56,6 +56,7 @@ public class NewGame extends ScreenAdapter{
 		this.music.setVolume(0.4f);
 		this.music.setLooping(false);
 		this.music.play();
+		viewport.apply(true);
 		
 		bg = new Texture(Gdx.files.internal("menubg.png"));
 		
@@ -92,9 +93,9 @@ public class NewGame extends ScreenAdapter{
 	        @Override
 	        public void changed (ChangeEvent event, Actor actor) {
 	        	if((gender.getSelected()!=null)&&(!name.getText().equals(""))){
-		        	profile = new Profile();
-		        	profile.gender = gender.getSelected();
-		        	profile.newGame(name.getText());
+		        	profile = new Profile(game, name.getText(), gender.getSelected());
+		        	game.profile = profile;
+		    		game.gama = new SigmaGame(game, game.maps[0], game.uistage);
 		        	game.setScreen(game.gama);
 		        	System.out.println("Clicktion");
 		        	//game.profile = profile;

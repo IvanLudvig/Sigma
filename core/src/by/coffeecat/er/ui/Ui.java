@@ -42,7 +42,7 @@ public class Ui {
 		}
 		for (int i = 0; i < 5; i++) {
 			  maj.add(new Array<Item>(25));
-			}
+		}
 		for(Array<Item> array: maj){
 			array.add(null);
 		}
@@ -65,17 +65,18 @@ public class Ui {
 	}
 	
 	public void render(SpriteBatch batch, int hp, int allhp, int mana, int allmana){
-
-		l.setPosition(camera.position.x+200, camera.position.y-210);
-		inventory.render();
-		batch.setProjectionMatrix(camera.combined);
-		camera.update();
-		batch.begin();
-		batch.draw(health, camera.position.x-385, camera.position.y+210, hp*2, 25);
-		batch.draw(this.mana, camera.position.x-385, camera.position.y+185, mana/2, 25);
-		font.draw(batch,hp+"/"+allhp+"hp" , camera.position.x-385, camera.position.y+230);
-		font.draw(batch,mana+"/"+allmana+"mana" , camera.position.x-385, camera.position.y+205);
-		batch.end();
+		if(game.gama.paused == 0){
+			l.setPosition(camera.position.x+200, camera.position.y-210);
+			inventory.render();
+			batch.setProjectionMatrix(camera.combined);
+			camera.update();
+			batch.begin();
+			batch.draw(health, camera.position.x-385, camera.position.y+210, hp*2, 25);
+			batch.draw(this.mana, camera.position.x-385, camera.position.y+185, mana/2, 25);
+			font.draw(batch,hp+"/"+allhp+"hp" , camera.position.x-385, camera.position.y+230);
+			font.draw(batch,mana+"/"+allmana+"mana" , camera.position.x-385, camera.position.y+205);
+			batch.end();
+		}
 	
 	}
 	

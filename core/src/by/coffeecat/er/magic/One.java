@@ -34,6 +34,8 @@ public class One {
 	FrameBuffer particleBuffer;
 	Music music;
 	
+	int life = 1;
+	
 	public One(float mana, float speed, float dam) {
 		batch = game.gama.batch;
 		effect=new ParticleEffect();
@@ -99,6 +101,7 @@ public class One {
 			game.gama.delete(body);
 			effect.dispose();
 			smoke.dispose();
+			life = 0;
 		}
 	}
 	

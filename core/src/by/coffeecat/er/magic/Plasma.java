@@ -99,14 +99,14 @@ public class Plasma extends Magic{
 	*/
 	
 	public void render(){
-			batch.begin();
 			for(int g=0;g<count;g++){
 				if(one[g]!=null){
-					one[g].render();
+					if(one[g].life==1){
+						one[g].render();
+					}
 				}
 			}
 
-			batch.end();
 	}
 
 	

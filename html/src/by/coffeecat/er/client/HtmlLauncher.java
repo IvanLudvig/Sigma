@@ -16,4 +16,10 @@ public class HtmlLauncher extends GwtApplication {
         public ApplicationListener getApplicationListener () {
                 return new Sigma();
         }
+
+		@Override
+		public ApplicationListener createApplicationListener() {
+			// TODO Auto-generated method stub
+			return null;
+		}
 }

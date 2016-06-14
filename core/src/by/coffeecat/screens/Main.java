@@ -50,6 +50,7 @@ public class Main extends ScreenAdapter {
 		camera.setToOrtho(false);
 		viewport = game.viewport;
 		stage = game.menuStage;
+		viewport.apply(true);
 		
 		bg = new Texture(Gdx.files.internal("menubg.png"));
 		music = Gdx.audio.newMusic(Gdx.files.internal("music/menu.mp3"));
@@ -83,7 +84,8 @@ public class Main extends ScreenAdapter {
 	    load.addListener(new ChangeListener() {
 	        @Override
 	        public void changed (ChangeEvent event, Actor actor) {
-	            game.setScreen(game.gama);
+	    		//game.gama = new SigmaGame(game, game.maps[0], game.uistage);
+	            game.setScreen(new LoadGame(game));
 	            System.out.println("from main with evilness");
 	            music.stop();
 	            game.inputMultiplexer.removeProcessor(stage);

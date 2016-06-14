@@ -14,8 +14,12 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Touchpad;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -57,20 +61,31 @@ public class SigmaGame extends ScreenAdapter{
 	Texture take;
     TiledMap map;
     
+    TextButton pause;
+    Skin skin;
 
-	public SigmaGame(Sigma sigma, Mapa mapa, Stage stage) {
+   
+    public int paused = 0;
+    
+	public SigmaGame(Sigma sigma, Mapa mapa, Stage stagee) {
 		game = sigma;
 		batch = game.batch;
 		camera = game.camera;
 		viewport = game.viewport;
-		touchpad = Mage.createPad(new Vector2(camera.position.x, camera.position.y));
+		skin = game.skin;
 		viewport.apply(true);
-		this.stage = stage;
+		
+		this.stage = stagee;
+		touchpad = Mage.createPad(new Vector2(camera.position.x, camera.position.y));
+		pause = new TextButton("||", skin);
+		pause.setPosition(770, 450);
+		
 		renderer = new Box2DDebugRenderer();
 		take = new Texture("ui/take.png");
 		current = mapa;
 		current.create(game, this.stage);
 		world = game.world;
+		
 		
         tiledMapRenderer = new OrthogonalTiledMapRenderer(current.map);
 		mage.create(world, game, batch);
@@ -78,79 +93,98 @@ public class SigmaGame extends ScreenAdapter{
 
 		mage.setPos(current.magePos);
 		
+		current.createLights();
+		pause.addListener(new ChangeListener() {
+	        @Override
+	        public void changed (ChangeEvent event, Actor actor) {
+	            game.setScreen(new Pause(game));
+	            game.inputMultiplexer.removeProcessor(stage);
+	            paused = 1;
+	        }
+	    });
+		
 		this.stage.addActor(touchpad);
+		this.stage.addActor(pause);
+		
+        game.inputMultiplexer.addProcessor(stage);
 	}
 	
 	 
     Item te;
 	@Override
 	public void render (float delta) {
-		Gdx.gl.glClearColor(0,0,0,0);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		Gdx.gl.glBlendFunc(GL20.GL_ONE, GL20.GL_ONE_MINUS_SRC_ALPHA);
-		 update();
-		MapHandler.renderMap(tiledMapRenderer, batch, camera, world, current.rayHandler);
-		MapHandler.renderPad(touchpad, camera, stage);
-		if(current.bounds==1){
-			MapHandler.setBounds(current.map, camera);
-		}
+		if(paused == 0){
+			Gdx.gl.glClearColor(0,0,0,0);
+			Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+			Gdx.gl.glBlendFunc(GL20.GL_ONE, GL20.GL_ONE_MINUS_SRC_ALPHA);
+			 update();
+			MapHandler.renderMap(tiledMapRenderer, batch, camera, world, current.rayHandler);
+			MapHandler.renderPad(touchpad, camera, stage);
+			if(current.bounds==1){
+				MapHandler.setBounds(current.map, camera);
+			}
+		    	
+			pause.setPosition(camera.position.x+340, camera.position.y+190);
+	    	mage.moveMage(touchpad, camera);
+	    	mage.drawit(batch);
+			//current.rayHandler.setCombinedMatrix(camera);
+			//current.rayHandler.updateAndRender();
+			game.putMage(mage);
+			current.render(delta);
+			renderer.render(world, batch.getProjectionMatrix().cpy().scale(PTM,PTM, 0));
+			
+		    batch.begin();
+		    Array<Body> bodies = new Array<Body>(world.getBodyCount()+50);
+		    world.getBodies(bodies);
+		    
+	    	mage.renderPlasma();
 	    	
-		stage.draw();
-    	stage.act();
-    	mage.moveMage(touchpad, camera);
-    	mage.drawit(batch);
-		//current.rayHandler.setCombinedMatrix(camera);
-		//current.rayHandler.updateAndRender();
-		game.putMage(mage);
-		current.render(delta);
-		//renderer.render(world, batch.getProjectionMatrix().cpy().scale(PTM,PTM, 0));
-		
-	    batch.begin();
-	    Array<Body> bodies = new Array<Body>(world.getBodyCount()+50);
-	    world.getBodies(bodies);
-	    
-	    for(Body body : bodies){
-			if(body.getUserData()!=null){
-				if((!body.getUserData().equals(mage.magico[1].one[0])&&(body.getUserData().getClass().getName().contains("by.coffeecat.er.objects")))){
-					Item item = (Item)body.getUserData();
-					batch.draw(item.texture, body.getWorldCenter().x*PTM-item.size.x, body.getWorldCenter().y*PTM-item.size.y, 
-							item.size.x*1.5f, item.size.y*1.5f);
-					
-					
-					suba = new Vector2(body.getPosition().x*PTM, body.getPosition().y*PTM);
-					suba.sub(mage.getPos());
-					suba.set(Math.abs(suba.x), Math.abs(suba.y));
-					camera.unproject(new Vector3(suba.x, suba.y, 0));
-					
-					
-					if((suba.x<50)&&(suba.y<50)){
-						batch.draw(take, body.getWorldCenter().x*PTM-item.size.x, body.getWorldCenter().y*PTM-item.size.y, 
-								70, 25);
-						if(Gdx.input.justTouched()){
-							Vector3 tp = new Vector3();
-							tp.x = Gdx.input.getX();     
-							tp.y = Gdx.input.getY();
-							tp.z = 0;
-							game.camera.unproject(tp);
-							if((Math.abs(new Vector2(tp.x, tp.y).sub(body.getPosition().x*PTM, body.getPosition().y*PTM).x)<30)&&
-									(Math.abs(new Vector2(tp.x, tp.y).sub(body.getPosition().x*PTM, body.getPosition().y*PTM).y)<30)){
-								System.out.println("ЧАй на столе");
-								item.removeFromWorld();
-								game.ui.inventory.addItem(item);
+			stage.draw();
+	    	stage.act();
+
+		    for(Body body : bodies){
+				if(body.getUserData()!=null){
+					if((!body.getUserData().equals(mage.magico[1].one[0])&&(body.getUserData().getClass().getName().contains("by.coffeecat.er.objects")))){
+						Item item = (Item)body.getUserData();
+						batch.draw(item.texture, body.getWorldCenter().x*PTM-item.size.x, body.getWorldCenter().y*PTM-item.size.y, 
+								item.size.x*1.5f, item.size.y*1.5f);
+						
+						
+						suba = new Vector2(body.getPosition().x*PTM, body.getPosition().y*PTM);
+						suba.sub(mage.getPos());
+						suba.set(Math.abs(suba.x), Math.abs(suba.y));
+						camera.unproject(new Vector3(suba.x, suba.y, 0));
+						
+						
+						if((suba.x<50)&&(suba.y<50)){
+							batch.draw(take, body.getWorldCenter().x*PTM-item.size.x, body.getWorldCenter().y*PTM-item.size.y, 
+									70, 25);
+							if(Gdx.input.justTouched()){
+								Vector3 tp = new Vector3();
+								tp.x = Gdx.input.getX();     
+								tp.y = Gdx.input.getY();
+								tp.z = 0;
+								game.camera.unproject(tp);
+								if((Math.abs(new Vector2(tp.x, tp.y).sub(body.getPosition().x*PTM, body.getPosition().y*PTM).x)<30)&&
+										(Math.abs(new Vector2(tp.x, tp.y).sub(body.getPosition().x*PTM, body.getPosition().y*PTM).y)<30)){
+									System.out.println("ЧАй на столе");
+									item.removeFromWorld();
+									game.ui.inventory.addItem(item);
+								}
 							}
 						}
-					}
 
+					}
 				}
 			}
-		}
 
-	    batch.end();
-		/*
-		 if(camera.position.x-400>map.getProperties().get("width", Integer.class)*10){
-			 camera.position.x=map.getProperties().get("width", Integer.class)*10;
-		 }
-		 */
+		    batch.end();
+			/*
+			 if(camera.position.x-400>map.getProperties().get("width", Integer.class)*10){
+				 camera.position.x=map.getProperties().get("width", Integer.class)*10;
+			 }
+			 */
+		}
 
 	}
 

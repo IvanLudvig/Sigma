@@ -66,18 +66,26 @@ public class MageClass {
 	public Magic magico[] = new Magic[10];
 	
 	Music[] footsteps = new Music[10];
+	public HumanProperties props;
+	Sigma game;
 	
 	public void create(World world, Sigma game, SpriteBatch batch){
 		mage = Mage.createMage(world);
-
+		this.game = game;
 		chesta = new DefChest(game);
 		chest = chesta.chest;
-		
-		body[0] = Mage.MudrecAnim(new Texture("items/body/bodfront.png"), 3, 1);
-		body[1] = Mage.MudrecAnim(new Texture("items/body/bodback.png"), 3, 1);
-		body[2] = Mage.MudrecAnim(new Texture("items/body/bodleft.png"), 3, 1);
-		body[3]= Mage.MudrecAnim(new Texture("items/body/bodright.png"), 3, 1);
-		
+	
+		if(game.profile.gender.equals("Male")){
+			body[0] = Mage.MudrecAnim(new Texture("items/body/mbody/0.png"), 3, 1);
+			body[1] = Mage.MudrecAnim(new Texture("items/body/mbody/1.png"), 3, 1);
+			body[3] = Mage.MudrecAnim(new Texture("items/body/mbody/2.png"), 3, 1);
+			body[2]= Mage.MudrecAnim(new Texture("items/body/mbody/3.png"), 3, 1);
+		}else{
+			body[0] = Mage.MudrecAnim(new Texture("items/body/fbody/0.png"), 3, 1);
+			body[1] = Mage.MudrecAnim(new Texture("items/body/fbody/1.png"), 3, 1);
+			body[3] = Mage.MudrecAnim(new Texture("items/body/fbody/2.png"), 3, 1);
+			body[2]= Mage.MudrecAnim(new Texture("items/body/fbody/3.png"), 3, 1);
+		}
 		for(int i =0; i<footsteps.length;i++){
     		footsteps[i] = Gdx.audio.newMusic(Gdx.files.internal("music/fs/"+i+".mp3"));
     		footsteps[i].setLooping(false);
@@ -89,6 +97,8 @@ public class MageClass {
 		
 		magico[1] = new Plasma(world, game, batch);
 		game.ui.magicUi(magico[1]);
+		
+		props = new HumanProperties(chesta, chesta, chesta, allhp, allhp, allhp, allhp, allhp, allhp, allhp, allhp, magico);
 		
 		
 	}
@@ -128,7 +138,6 @@ public class MageClass {
     public void updatePlease(float delta){
      	timer+=delta;
      	reTime+=delta;
-     	magico[1].render();
      	if(mana>=allmana){
      		mana = allmana;
      	}else{
@@ -141,6 +150,10 @@ public class MageClass {
      		hp = allhp;
      	}
      	
+    }
+    
+    public void renderPlasma(){
+     	magico[1].render();
     }
     
     public Touchpad touchpad;
@@ -204,6 +217,7 @@ public class MageClass {
     
     public void minusMana(int amount){
     	mana-=amount;
+		props = new HumanProperties(chesta, chesta, chesta, allhp, allhp, allhp, allhp, allhp, allhp, allhp, allhp, magico);
     }
     public void changeClothes(Clothes brandnew){
     	if(brandnew.chest!=null){
@@ -221,6 +235,31 @@ public class MageClass {
     		anim[3]=brandnew.feet;
     		feeta = brandnew;
     	}
+    	
+		props = new HumanProperties(chesta, chesta, chesta, allhp, allhp, allhp, allhp, allhp, allhp, allhp, allhp, magico);
+    }
+    
+    public void applyProps(HumanProperties properties){
+    	props = properties;
+    	
+		this.chesta = (Clothes) game.nor.norit(properties.chesta);
+		this.feeta = (Clothes) game.nor.norit(properties.feeta);
+		this.hata = (Clothes) game.nor.norit(properties.hata);
+		
+		this.allhp = properties.allhp;
+		this.hp = properties.hp;
+		this.armour = properties.armour;
+		this.allmana = properties.allmana;
+		this.mana = properties.mana;
+		//this.reRate = reRate;
+		this.allstrength = properties.allstrength;
+		this.strength = properties.strength;
+		
+		for(int y = 0; y<properties.magico.length; y++){
+			if(properties.magico[y]!=null){
+				magico[y] = game.nor.normag(properties.magico[y]);
+			}
+		}
     }
 
 }
