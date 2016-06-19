@@ -41,7 +41,7 @@ public class Pause extends ScreenAdapter {
 		bg = new Texture(Gdx.files.internal("menubg.png"));
 		
 		table = new Table();
-		table.setPosition(300, 360);
+		table.setPosition(game.camera.position.x-100, game.camera.position.y+100);
 		
 		exit = new TextButton("Exit", skin);
 		back = new TextButton("Back", skin);
@@ -63,6 +63,7 @@ public class Pause extends ScreenAdapter {
 	            game.gama.paused = 0;
 	            game.inputMultiplexer.removeProcessor(stage);
 	            game.inputMultiplexer.addProcessor(game.gama.stage);
+	            stage.clear();
 	        }
 	    });
 	    
@@ -78,6 +79,7 @@ public class Pause extends ScreenAdapter {
 	        public void changed (ChangeEvent event, Actor actor) {
 	            game.setScreen(new Main(game, game.menuStage));
 	            game.inputMultiplexer.removeProcessor(stage);
+	            stage.clear();
 	        }
 	    });
 	    
@@ -90,11 +92,18 @@ public class Pause extends ScreenAdapter {
 		
         batch.begin();
         batch.setProjectionMatrix(game.camera.combined);
-		batch.draw(bg, 0, 0, 750, 480);
+		batch.draw(bg, game.camera.position.x-400, game.camera.position.y-240, 750, 480);
 		batch.end();
+		
 		
 		stage.act(delta);
 		stage.draw();
+	}
+	
+	@Override
+	public void dispose(){
+		batch.dispose();
+		stage.dispose();
 	}
 
 }

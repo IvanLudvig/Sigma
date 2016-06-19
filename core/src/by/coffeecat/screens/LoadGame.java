@@ -94,6 +94,7 @@ public class LoadGame extends ScreenAdapter{
 	        public void changed (ChangeEvent event, Actor actor) {
 	            game.setScreen(new Main(game, game.menuStage));
 	            game.inputMultiplexer.removeProcessor(stage);
+	            stage.clear();
 	        }
 	    });
 	    

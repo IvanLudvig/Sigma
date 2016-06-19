@@ -61,13 +61,13 @@ public class Plasma extends Magic{
 		    }
 		    
 		    public void dragStop(InputEvent event, float x, float y, int pointer) {
-		    	newOne(count);
+		    	newOne(count());
 		    	
 		    	Vector2 dest = new Vector2(btn.getX()+game.gama.camera.position.x+200,btn.getY()+game.gama.camera.position.y-210);
 		        game.gama.camera.unproject(new Vector3(dest.x,dest.y,0));
 		        
 		        System.out.println(dest);
-		    	one[count].cast(end.mage.getPos(), dest);
+		    	one[count()].cast(end.mage.getPos(), dest);
 		    	btn.addAction(Actions.moveTo(0, 0));
 				end.gama.mage.minusMana(mana);
 				count++;
@@ -103,10 +103,28 @@ public class Plasma extends Magic{
 				if(one[g]!=null){
 					if(one[g].life==1){
 						one[g].render();
+					}else{
+						one[g]=null;
 					}
 				}
 			}
+			
 
+	}
+	
+	public int count(){
+		for(int g=0;g<=count;g++){
+			if(one[g]!=null){
+				if(one[g].count==g){
+					continue;
+				}else{
+					count = g;
+					break;
+				}
+			}
+		}
+		
+		return count;
 	}
 
 	

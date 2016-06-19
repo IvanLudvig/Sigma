@@ -18,19 +18,21 @@ import by.coffeecat.er.magic.Magic;
 import by.coffeecat.er.magic.Plasma;
 import by.coffeecat.er.objects.clothes.Clothes;
 import by.coffeecat.er.objects.clothes.DefChest;
+import by.coffeecat.er.objects.weapons.Weapon;
 
 public class MageClass {
 	public static Body mage;
 
 	
 	//графика
-	Animation[][] anim = new Animation[4][4];
+	Animation[][] anim = new Animation[5][5];
 	Animation chest[] = new Animation[4];
 	Animation body[] = new Animation[4];
 
 	public Clothes chesta;
 	public Clothes feeta;
 	public Clothes hata;
+	public Weapon weap;
 	
 	Animation hatback;
 	Animation hatleft;
@@ -124,6 +126,10 @@ public class MageClass {
 	   	     TextureRegion currentFrame3 = anim[3][side-1].getKeyFrame(Mage.stateTime, true); 
 	       	 batch.draw(currentFrame3, (mage.getWorldCenter().x-20/PTM)*PTM,( mage.getWorldCenter().y-15/PTM)*PTM, 35,60);
 	   }
+ 	   if(weap!=null){
+	   	     TextureRegion currentFrame3 = anim[4][side-1].getKeyFrame(Mage.stateTime, true); 
+	       	 batch.draw(currentFrame3, (mage.getWorldCenter().x-20/PTM)*PTM,( mage.getWorldCenter().y-15/PTM)*PTM, 35,60);
+	   }
  	   if(walking){
  		   Mage.stateTime += Gdx.graphics.getDeltaTime(); 
  		   footsteps[7].play();
@@ -150,10 +156,14 @@ public class MageClass {
      		hp = allhp;
      	}
      	
+     	
     }
     
     public void renderPlasma(){
      	magico[1].render();
+     	if(weap!=null){
+     		weap.render();
+     	}
     }
     
     public Touchpad touchpad;
@@ -237,6 +247,11 @@ public class MageClass {
     	}
     	
 		props = new HumanProperties(chesta, chesta, chesta, allhp, allhp, allhp, allhp, allhp, allhp, allhp, allhp, magico);
+    }
+    
+    public void applyWp(Weapon weap){
+    	this.weap = weap;
+		anim[4]=this.weap.main;
     }
     
     public void applyProps(HumanProperties properties){

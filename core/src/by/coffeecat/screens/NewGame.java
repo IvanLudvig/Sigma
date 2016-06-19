@@ -101,6 +101,7 @@ public class NewGame extends ScreenAdapter{
 		        	//game.profile = profile;
 		            //game.setScreen(game.gama);
 		            game.inputMultiplexer.removeProcessor(stage);
+		            stage.clear();
 	        	}
 	        }
 	    });
@@ -110,6 +111,7 @@ public class NewGame extends ScreenAdapter{
 	        public void changed (ChangeEvent event, Actor actor) {
 	            game.setScreen(new Main(game, game.menuStage));
 	            game.inputMultiplexer.removeProcessor(stage);
+	            stage.clear();
 	        }
 	    });
 	    

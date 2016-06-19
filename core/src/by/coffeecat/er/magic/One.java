@@ -35,8 +35,10 @@ public class One {
 	Music music;
 	
 	int life = 1;
+	public int count;
 	
-	public One(float mana, float speed, float dam) {
+	public One(float mana, float speed, float dam, int count) {
+		this.count = count;
 		batch = game.gama.batch;
 		effect=new ParticleEffect();
 		smoke=new ParticleEffect();

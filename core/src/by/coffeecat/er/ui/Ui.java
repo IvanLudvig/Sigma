@@ -18,6 +18,7 @@ import by.coffeecat.er.objects.clothes.Cool;
 import by.coffeecat.er.objects.clothes.DefChest;
 import by.coffeecat.er.objects.clothes.HatofPeople;
 import by.coffeecat.er.objects.food.Carrot;
+import by.coffeecat.er.objects.weapons.Famas;
 
 public class Ui {
 
@@ -51,7 +52,7 @@ public class Ui {
 		maj.get(1).add(new Cool(game));
 		maj.get(1).add(new HatofPeople(game));
 		maj.get(3).add(null);
-		maj.get(2).add(null);
+		maj.get(2).add(new Famas(game));
 		health = new Texture("ui/health.png");
 		mana = new Texture("ui/mana.png");
 		font = game.font;

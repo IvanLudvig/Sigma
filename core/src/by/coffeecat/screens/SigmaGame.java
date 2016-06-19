@@ -61,6 +61,7 @@ public class SigmaGame extends ScreenAdapter{
 	Texture take;
     TiledMap map;
     
+    TextButton shoot;
     TextButton pause;
     Skin skin;
 
@@ -79,6 +80,9 @@ public class SigmaGame extends ScreenAdapter{
 		touchpad = Mage.createPad(new Vector2(camera.position.x, camera.position.y));
 		pause = new TextButton("||", skin);
 		pause.setPosition(770, 450);
+		
+		shoot = new TextButton("Shoot", skin);
+		shoot.setPosition(camera.position.x+200, camera.position.y-180);
 		
 		renderer = new Box2DDebugRenderer();
 		take = new Texture("ui/take.png");
@@ -103,8 +107,18 @@ public class SigmaGame extends ScreenAdapter{
 	        }
 	    });
 		
+		shoot.addListener(new ChangeListener() {
+	        @Override
+	        public void changed (ChangeEvent event, Actor actor) {
+	        	if(mage.weap!=null){
+	        		mage.weap.shoot();
+	        	}
+	        }
+	    });
+		
 		this.stage.addActor(touchpad);
 		this.stage.addActor(pause);
+		this.stage.addActor(shoot);
 		
         game.inputMultiplexer.addProcessor(stage);
 	}
@@ -124,6 +138,7 @@ public class SigmaGame extends ScreenAdapter{
 				MapHandler.setBounds(current.map, camera);
 			}
 		    	
+			shoot.setPosition(camera.position.x+200, camera.position.y-120);
 			pause.setPosition(camera.position.x+340, camera.position.y+190);
 	    	mage.moveMage(touchpad, camera);
 	    	mage.drawit(batch);
