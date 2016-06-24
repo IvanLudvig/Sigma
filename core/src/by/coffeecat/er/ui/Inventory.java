@@ -98,7 +98,7 @@ public class Inventory {
 		int f = 0;
 		
 		
-		table.debug();
+		//table.debug();
 		win.add(table).width(250).height(200).top();
 		win.row();
 		win.add(equip).width(50).height(50);

@@ -29,7 +29,7 @@ import by.coffeecat.screens.SigmaGame;
 
 public class Sigma extends Game {
 	
-	public SpriteBatch batch;
+	public static SpriteBatch batch;
 	public static World world;
 	public OrthographicCamera camera;
 	public static Viewport viewport; 
@@ -73,6 +73,9 @@ public class Sigma extends Game {
 		viewport = new StretchViewport(800, 480, camera);
 		prohand = new ProfileHandler(this);
 		
+
+		profile = new Profile(this, "Ivan", "Male");
+		
 		viewport.apply(true);
 		ctrl = new Stage(viewport);
 		uistage = new Stage(viewport);
@@ -88,7 +91,8 @@ public class Sigma extends Game {
 		font = skin.getFont("fonta20");
 		ui = new Ui(this, ctrl, null);
 
-		setScreen(new Main(this, menuStage));
+		gama = new SigmaGame(this, maps[0], uistage);
+		setScreen(gama);
 		
 		inputMultiplexer.addProcessor(ctrl);
 		

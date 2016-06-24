@@ -130,7 +130,7 @@ public class SigmaGame extends ScreenAdapter{
 		if(paused == 0){
 			Gdx.gl.glClearColor(0,0,0,0);
 			Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-			Gdx.gl.glBlendFunc(GL20.GL_ONE, GL20.GL_ONE_MINUS_SRC_ALPHA);
+			Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 			 update();
 			MapHandler.renderMap(tiledMapRenderer, batch, camera, world, current.rayHandler);
 			MapHandler.renderPad(touchpad, camera, stage);
@@ -140,23 +140,20 @@ public class SigmaGame extends ScreenAdapter{
 		    	
 			shoot.setPosition(camera.position.x+200, camera.position.y-120);
 			pause.setPosition(camera.position.x+340, camera.position.y+190);
+			
+			stage.draw();
+	    	stage.act();
 	    	mage.moveMage(touchpad, camera);
 	    	mage.drawit(batch);
 			//current.rayHandler.setCombinedMatrix(camera);
 			//current.rayHandler.updateAndRender();
 			game.putMage(mage);
 			current.render(delta);
-			renderer.render(world, batch.getProjectionMatrix().cpy().scale(PTM,PTM, 0));
 			
 		    batch.begin();
 		    Array<Body> bodies = new Array<Body>(world.getBodyCount()+50);
 		    world.getBodies(bodies);
 		    
-	    	mage.renderPlasma();
-	    	
-			stage.draw();
-	    	stage.act();
-
 		    for(Body body : bodies){
 				if(body.getUserData()!=null){
 					if((!body.getUserData().equals(mage.magico[1].one[0])&&(body.getUserData().getClass().getName().contains("by.coffeecat.er.objects")))){
@@ -200,10 +197,14 @@ public class SigmaGame extends ScreenAdapter{
 			 }
 			 */
 		}
+		
+		 debugMatrix = batch.getProjectionMatrix().cpy().scale(PTM,PTM, 0);
+		 renderer.render(world, debugMatrix);
 
 	}
 
 	public int count = 0;
+	
 	public void delete(Body body){
 		deletion[count]=body;
 		count++;
@@ -211,7 +212,6 @@ public class SigmaGame extends ScreenAdapter{
  
      public void update(){
 		 batch.setProjectionMatrix(camera.combined);
-		 //debugMatrix = batch.getProjectionMatrix().cpy().scale(PTM,PTM, 0);
 		 camera.update();
 		 
 		    
@@ -230,11 +230,8 @@ public class SigmaGame extends ScreenAdapter{
 		 }
 		 count = 0;
 		    
-
-
-		    
 		 touchpad.setBounds(camera.position.x-375, camera.position.y-225, 150, 150);
-			//renderer.render(world, debugMatrix);
+		 
 	    	
      }
      

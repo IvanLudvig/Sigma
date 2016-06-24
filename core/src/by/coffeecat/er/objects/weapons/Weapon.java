@@ -1,10 +1,12 @@
 package by.coffeecat.er.objects.weapons;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.utils.Array;
 
 import by.coffeecat.er.Sigma;
-import by.coffeecat.er.objects.Bullet;
+import by.coffeecat.er.body.Bullet;
 import by.coffeecat.er.objects.Item;
 
 public class Weapon extends Item{
@@ -17,17 +19,23 @@ public class Weapon extends Item{
 	public int maxammo;
 	public int clip;
 	public Array<Bullet> bullets = new Array<Bullet>(100);
+	Music[] sound = new Music[3];
+	int g = 0;
 	
 	public Weapon(int speed, int bps, int ammo, int maxammo, int clip, final Sigma game) {
 		this.game = game;
 		main = new Animation[5];
-		bullets.add(null);
+		for(int f=0;f<sound.length;f++){
+			sound[f] = Gdx.audio.newMusic(Gdx.files.internal("items/weapons/rifle.mp3"));
+			sound[f].setVolume(0.2f);
+			sound[f].setLooping(false);
+		}
 	}
 	
 
 	@Override
 	public void use() {
-		shoot();
+		game.gama.mage.applyWp(this);
 	}
 	
 	public void reload(){
@@ -44,15 +52,28 @@ public class Weapon extends Item{
 		}
 	}
 	
+	public void sort(){
+		for(Bullet bullet : bullets){
+			if(bullet.life == 0){
+				for(int g = 0;g<bullets.size;g++){
+					if(bullets.get(g).equals(bullet)){
+						bullets.removeIndex(g);
+					}
+				}
+			}
+		}
+	}
+	
 	public void shoot(){
+		System.out.println("sHOOT");
+		sort();
 		clip-=1;
-		game.gama.mage.applyWp(this);
 		bullets.add(new Bullet(game));
 		System.out.println("JL");
-		for(Bullet bullet : bullets){
-			if(bullet!=null){
-				bullet.render();
-			}
+		sound[g].play();
+		g++;
+		if(g>=3){
+			g=0;
 		}
 	}
 

@@ -18,6 +18,7 @@ import by.coffeecat.er.magic.Magic;
 import by.coffeecat.er.magic.Plasma;
 import by.coffeecat.er.objects.clothes.Clothes;
 import by.coffeecat.er.objects.clothes.DefChest;
+import by.coffeecat.er.objects.weapons.Famas;
 import by.coffeecat.er.objects.weapons.Weapon;
 
 public class MageClass {
@@ -76,6 +77,8 @@ public class MageClass {
 		this.game = game;
 		chesta = new DefChest(game);
 		chest = chesta.chest;
+		weap = new Famas(game);
+		anim[4]=this.weap.main;
 	
 		if(game.profile.gender.equals("Male")){
 			body[0] = Mage.MudrecAnim(new Texture("items/body/mbody/0.png"), 3, 1);
@@ -137,6 +140,7 @@ public class MageClass {
 
    	 batch.end();
    	 updatePlease(Gdx.graphics.getDeltaTime());
+   	 renderPlasma();
     }
     
     float reTime = 0f;
@@ -167,11 +171,16 @@ public class MageClass {
     }
     
     public Touchpad touchpad;
+    public Vector2 lookdir = new Vector2(1, 0);
+    
     public void moveMage(Touchpad touchpad, OrthographicCamera camera){
-    	//plasma.cast(getPos(), new Vector2(touchpad.getKnobPercentX()*1.2f, touchpad.getKnobPercentY()*1.2f));
     	this.touchpad = touchpad;
+    	mage.setTransform(getPos().x/PTM,  getPos().y/PTM, 0);
       	 mage.setLinearVelocity(new Vector2(touchpad.getKnobPercentX()*1.2f, touchpad.getKnobPercentY()*1.2f));
-      	 mage.setTransform(getPos().x/PTM,getPos().y/PTM, 0);
+      	 if((Math.abs(touchpad.getKnobPercentX())>0.07)&&(Math.abs(touchpad.getKnobPercentY())>0.07)){
+      		 lookdir = new Vector2(touchpad.getKnobPercentX()*1.2f, touchpad.getKnobPercentY()*1.2f);
+      	 }
+      	 
 
        	 if((touchpad.getKnobPercentY()>touchpad.getKnobPercentX())&&(touchpad.getKnobPercentY()>0.3)){
        		 walking=true;

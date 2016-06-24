@@ -86,18 +86,19 @@ public class One {
 	}
 	
 	public void render(){
+		batch.begin();
 		effect.setPosition(body.getPosition().x*Constants.PTM, body.getPosition().y*Constants.PTM);
 		smoke.setPosition(pos.x, pos.y);
 	    body.setTransform(body.getPosition(), angle);
-	    batch.setBlendFunction(GL20.GL_ONE, GL20.GL_ONE_MINUS_SRC_ALPHA);
 		effect.draw(batch, Gdx.graphics.getDeltaTime());
 		smoke.draw(batch, Gdx.graphics.getDeltaTime());
 		smoke.allowCompletion();
+		batch.end();
 		timer+=Gdx.graphics.getDeltaTime();
 	}
 	
 	public void destroy(){
-		if(timer>1f){
+		if(timer>0.65f){
 			effect.allowCompletion();
 			smoke.allowCompletion();
 			game.gama.delete(body);
