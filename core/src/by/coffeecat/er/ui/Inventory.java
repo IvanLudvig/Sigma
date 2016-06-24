@@ -70,8 +70,8 @@ public class Inventory {
 		addList();
 		 
 		win.setPosition(game.camera.position.x+480, game.camera.position.y-100);
-		win.debug();
-		table.debug();
+		//win.debug();
+		//table.debug();
 		
 		if(thing!=null){
 			maj = thing;
@@ -166,7 +166,7 @@ public class Inventory {
 	
 	public void recreate(){
 		table.reset();
-		table.debug();
+		//table.debug();
 		for(int g=0;g<4;g++){   //Переменную g надо поменять!!
 			for(int i=0;i<maj.get(g).size;i++){
 				if(maj.get(g).get(i)!=null){

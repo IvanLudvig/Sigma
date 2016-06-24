@@ -52,6 +52,7 @@ public class NewGame extends ScreenAdapter{
 		camera.setToOrtho(false);
 		viewport = game.viewport;
 		this.stage = game.newGameStage;
+		stage.clear();
 		this.music = music;
 		this.music.setVolume(0.4f);
 		this.music.setLooping(false);

@@ -27,7 +27,7 @@ public class Mage {
         magic.position.set(1000/Constants.PTM, 480/Constants.PTM);
                                                      
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(20/2/ Constants.PTM, 20/2/ Constants.PTM);
+        shape.setAsBox(16/2/ Constants.PTM, 20/2/ Constants.PTM);
 
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = shape;

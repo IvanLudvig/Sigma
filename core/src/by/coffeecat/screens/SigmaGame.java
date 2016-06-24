@@ -63,6 +63,7 @@ public class SigmaGame extends ScreenAdapter{
     
     TextButton shoot;
     TextButton pause;
+    TextButton ammo;
     Skin skin;
 
    
@@ -77,12 +78,21 @@ public class SigmaGame extends ScreenAdapter{
 		viewport.apply(true);
 		
 		this.stage = stagee;
+		stage.clear();
 		touchpad = Mage.createPad(new Vector2(camera.position.x, camera.position.y));
 		pause = new TextButton("||", skin);
 		pause.setPosition(770, 450);
 		
 		shoot = new TextButton("Shoot", skin);
 		shoot.setPosition(camera.position.x+200, camera.position.y-180);
+		
+    	if(mage.weap!=null){
+    		ammo = new TextButton(Integer.toString(mage.weap.clip)+"/"+Integer.toString(mage.weap.ammo), skin);
+    		ammo.setPosition(camera.position.x+220, camera.position.y-180);
+    	}else{
+    		ammo = new TextButton("", skin);
+    		ammo.setPosition(camera.position.x+260, camera.position.y-180);
+    	}
 		
 		renderer = new Box2DDebugRenderer();
 		take = new Texture("ui/take.png");
@@ -111,7 +121,9 @@ public class SigmaGame extends ScreenAdapter{
 	        @Override
 	        public void changed (ChangeEvent event, Actor actor) {
 	        	if(mage.weap!=null){
-	        		mage.weap.shoot();
+	        		if(mage.weap.clip>0){
+	        			mage.weap.shoot();
+	        		}
 	        	}
 	        }
 	    });
@@ -119,6 +131,7 @@ public class SigmaGame extends ScreenAdapter{
 		this.stage.addActor(touchpad);
 		this.stage.addActor(pause);
 		this.stage.addActor(shoot);
+		this.stage.addActor(ammo);
 		
         game.inputMultiplexer.addProcessor(stage);
 	}
@@ -139,7 +152,11 @@ public class SigmaGame extends ScreenAdapter{
 			}
 		    	
 			shoot.setPosition(camera.position.x+200, camera.position.y-120);
+			ammo.setPosition(camera.position.x+260, camera.position.y-120);
 			pause.setPosition(camera.position.x+340, camera.position.y+190);
+			if(mage.weap!=null){
+				ammo.setText(Integer.toString(mage.weap.clip)+"/"+Integer.toString(mage.weap.ammo));
+			}
 			
 			stage.draw();
 	    	stage.act();
@@ -199,7 +216,7 @@ public class SigmaGame extends ScreenAdapter{
 		}
 		
 		 debugMatrix = batch.getProjectionMatrix().cpy().scale(PTM,PTM, 0);
-		 renderer.render(world, debugMatrix);
+		 //renderer.render(world, debugMatrix);
 
 	}
 

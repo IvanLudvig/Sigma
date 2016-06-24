@@ -48,6 +48,7 @@ public class LoadGame extends ScreenAdapter{
 		camera.setToOrtho(false);
 		viewport = game.viewport;
 		this.stage = game.loadGameStage;
+		stage.clear();
 		viewport.apply(true);
 		
 		bg = new Texture(Gdx.files.internal("menubg.png"));

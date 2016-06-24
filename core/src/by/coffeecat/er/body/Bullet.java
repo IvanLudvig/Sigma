@@ -32,18 +32,18 @@ public class Bullet {
 	public Bullet(Sigma game) {
 		this.game = game;
 		pos = game.gama.mage.getPos();
-		vel = new Vector2(game.gama.mage.lookdir.x*3f, game.gama.mage.lookdir.y*3f);
+		vel = new Vector2(game.gama.mage.lookdir.x*4f, game.gama.mage.lookdir.y*4f);
 		if(vel.x>0.75){
-			pos.x += 20;
+			pos.x += 16;
 		}
 		if(vel.x<-0.75){
-			pos.x -= 15;
+			pos.x -= 16;
 		}
 		if(vel.y>0.75){
-			pos.y += 25;
+			pos.y += 20;
 		}
 		if(vel.y<-0.75){
-			pos.y -= 15;
+			pos.y -= 10;
 		}
 		bullet = createBull(game.gama.world, pos);
 		batch = game.gama.batch;

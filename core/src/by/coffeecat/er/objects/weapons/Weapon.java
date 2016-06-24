@@ -15,7 +15,7 @@ public class Weapon extends Item{
 	public Animation[] aim;
 	public int speed;
 	public int bps;
-	public int ammo;
+	public int ammo = 30;
 	public int maxammo;
 	public int clip;
 	public Array<Bullet> bullets = new Array<Bullet>(100);

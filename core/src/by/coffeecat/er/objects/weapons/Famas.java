@@ -19,6 +19,7 @@ public class Famas extends Weapon{
 		size = new Vector2(23,23);
 		cost = 23;
 		btn = this.getBtn();
+		ammo = 60;
 	}
 
 
