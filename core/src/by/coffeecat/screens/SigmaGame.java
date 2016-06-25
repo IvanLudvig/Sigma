@@ -87,8 +87,10 @@ public class SigmaGame extends ScreenAdapter{
 		shoot.setPosition(camera.position.x+200, camera.position.y-180);
 		
     	if(mage.weap!=null){
-    		ammo = new TextButton(Integer.toString(mage.weap.clip)+"/"+Integer.toString(mage.weap.ammo), skin);
+    		ammo = new TextButton(Integer.toString(mage.weap.clip)+"/"+Integer.toString(mage.weap.maxammo)+"|"+Integer.toString(mage.weap.ammo), 
+    				skin);
     		ammo.setPosition(camera.position.x+220, camera.position.y-180);
+    		ammo.setSize(90, 50);
     	}else{
     		ammo = new TextButton("", skin);
     		ammo.setPosition(camera.position.x+260, camera.position.y-180);
@@ -128,6 +130,15 @@ public class SigmaGame extends ScreenAdapter{
 	        }
 	    });
 		
+		ammo.addListener(new ChangeListener() {
+	        @Override
+	        public void changed (ChangeEvent event, Actor actor) {
+	        	if(mage.weap!=null){
+	        		mage.weap.reload();
+	        	}
+	        }
+	    });
+		
 		this.stage.addActor(touchpad);
 		this.stage.addActor(pause);
 		this.stage.addActor(shoot);
@@ -153,9 +164,10 @@ public class SigmaGame extends ScreenAdapter{
 		    	
 			shoot.setPosition(camera.position.x+200, camera.position.y-120);
 			ammo.setPosition(camera.position.x+260, camera.position.y-120);
+    		ammo.setSize(90, 50);
 			pause.setPosition(camera.position.x+340, camera.position.y+190);
 			if(mage.weap!=null){
-				ammo.setText(Integer.toString(mage.weap.clip)+"/"+Integer.toString(mage.weap.ammo));
+				ammo.setText(Integer.toString(mage.weap.clip)+"/"+Integer.toString(mage.weap.maxammo)+"|"+Integer.toString(mage.weap.ammo));
 			}
 			
 			stage.draw();

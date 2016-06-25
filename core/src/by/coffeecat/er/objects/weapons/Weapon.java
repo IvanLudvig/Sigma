@@ -25,6 +25,11 @@ public class Weapon extends Item{
 	public Weapon(int speed, int bps, int ammo, int maxammo, int clip, final Sigma game) {
 		this.game = game;
 		main = new Animation[5];
+		this.speed = speed;
+		this.bps = bps;
+		this.ammo = ammo;
+		this.maxammo = maxammo;
+		this.clip = clip;
 		for(int f=0;f<sound.length;f++){
 			sound[f] = Gdx.audio.newMusic(Gdx.files.internal("items/weapons/rifle.mp3"));
 			sound[f].setVolume(0.2f);
@@ -39,8 +44,14 @@ public class Weapon extends Item{
 	}
 	
 	public void reload(){
-		if(ammo>=maxammo){
-			clip+=maxammo-ammo;
+		if(ammo>maxammo){
+			int tmp = 0;
+			//tmp = maxammo-clip;
+			ammo-=maxammo-clip;
+			clip+=maxammo-clip;
+		}else{
+			clip+=ammo;
+			ammo = 0;
 		}
 	}
 	
@@ -65,15 +76,16 @@ public class Weapon extends Item{
 	}
 	
 	public void shoot(){
-		System.out.println("sHOOT");
-		sort();
-		clip-=1;
-		bullets.add(new Bullet(game));
-		System.out.println("JL");
-		sound[g].play();
-		g++;
-		if(g>=3){
-			g=0;
+		if(clip>0){
+			sort();
+			clip-=1;
+			bullets.add(new Bullet(game));
+			System.out.println("JL");
+			sound[g].play();
+			g++;
+			if(g>=3){
+				g=0;
+			}
 		}
 	}
 

@@ -80,7 +80,6 @@ public class MageClass {
 		weap = new Famas(game);
 		anim[4]=this.weap.main;
 	
-		weap.clip += 50;
 		if(game.profile.gender.equals("Male")){
 			body[0] = Mage.MudrecAnim(new Texture("items/body/mbody/0.png"), 3, 1);
 			body[1] = Mage.MudrecAnim(new Texture("items/body/mbody/1.png"), 3, 1);
