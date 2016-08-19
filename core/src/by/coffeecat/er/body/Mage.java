@@ -42,6 +42,27 @@ public class Mage {
         return mage;
 	}
 	
+	public static Body createB(World world, Vector2 size){
+		BodyDef magic = new BodyDef();
+        magic.type = BodyDef.BodyType.DynamicBody;
+        magic.position.set(1000/Constants.PTM, 480/Constants.PTM);
+                                                     
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(size.x, size.y);
+
+        FixtureDef fixtureDef = new FixtureDef();
+        fixtureDef.shape = shape;
+        fixtureDef.friction = 100f;
+        fixtureDef.density = 100f;
+        fixtureDef.restitution = 0.001f;
+
+        Body mage = world.createBody(magic);
+        mage.createFixture(fixtureDef);
+        shape.dispose();
+        
+        return mage;
+	}
+	
 	public static Touchpad touchpad;
 	
 	public static Touchpad createPad(Vector2 pos){
@@ -89,7 +110,7 @@ public class Mage {
 
     static SpriteBatch                     spriteBatch;            // #6
 
-    static float stateTime;  
+    public static float stateTime;  
     
 	public static Animation MudrecAnim(Texture walkSheet,int FRAME_COLS, final int FRAME_ROWS ){
 		Animation anim;

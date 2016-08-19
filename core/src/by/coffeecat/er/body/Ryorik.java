@@ -1,5 +1,8 @@
 package by.coffeecat.er.body;
 
+//Древний класс
+//ничего не делает
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.Texture;
