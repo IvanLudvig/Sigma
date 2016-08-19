@@ -37,8 +37,11 @@ public class One {
 	int life = 1;
 	public int count;
 	
+	 Vector2 vel;
+	
 	public One(float mana, float speed, float dam, int count) {
 		this.count = count;
+		this.mana = mana;
 		batch = game.gama.batch;
 		effect=new ParticleEffect();
 		smoke=new ParticleEffect();
@@ -54,11 +57,11 @@ public class One {
 	
 	Vector2 pos = new Vector2();
 	
-	public void cast(Vector2 pos, Vector2 dest){
+	public void cast(Vector2 pos){
 		if(game.gama.mage.mana>=mana){
-			if(dest.y>pos.y){
-				pos.y+=10;
-			}
+			pos.x = pos.x/PTM;
+			pos.y = pos.y/PTM;
+			
 			this.pos = pos;
 			music = Gdx.audio.newMusic(Gdx.files.internal("peff/plasma/sound.mp3"));
 			music.play();
@@ -66,30 +69,44 @@ public class One {
 			music.setVolume(0.6f);
 			
 			body = this.createMagic(game.gama.world, pos, effect);
-			angle = (float) Math.atan2(dest.x, dest.y);
 			//b[count].setTransform(pos.x/Constants.PTM, pos.y/Constants.PTM, angle[count]);
 			//b[count].applyForceToCenter(1,1, true);
 			//body.setLinearVelocity((pos.x/PTM - dest.x/PTM) * 50000, (pos.y/PTM - dest.y/PTM)* 50000);
 			//b[count].applyForceToCenter(new Vector2(1,1),  false);
 			//eff[count].setPosition(b[count].getPosition().x, b[count].getPosition().y);
-		    Vector2 direction = new Vector2(dest.x/PTM, dest.y/PTM);
-		    direction.sub(new Vector2(pos.x/PTM, pos.y/PTM));
-		    direction.nor();
+		    vel = new Vector2(game.gama.mage.lookdir.x*4f, game.gama.mage.lookdir.y*4f);
 
 		    float speed = 10;
 		    
-		    body.setTransform(body.getPosition(), angle);
-		    body.applyForceToCenter(direction, true);
+			if(vel.x>0.75){
+				pos.x += 16/PTM;
+			}
+			if(vel.x<-0.75){
+				pos.x -= 16/PTM;
+			}
+			if(vel.y>0.75){
+				pos.y += 20/PTM;
+			}
+			if(vel.y<-0.75){
+				pos.y -= 10/PTM;
+			}
+			System.out.println(pos);
+		    body.setTransform(pos, 0);
+		    
+		    //body.setTransform(body.getPosition(), 0);
+		    body.applyForceToCenter(vel, true);
 		}else{
 			
 		}
 	}
 	
 	public void render(){
+
 		batch.begin();
 		effect.setPosition(body.getPosition().x*Constants.PTM, body.getPosition().y*Constants.PTM);
-		smoke.setPosition(pos.x, pos.y);
-	    body.setTransform(body.getPosition(), angle);
+		smoke.setPosition(pos.x*PTM, pos.y*PTM);
+		
+	  //  body.setTransform(body.getPosition(), 0);
 		effect.draw(batch, Gdx.graphics.getDeltaTime());
 		smoke.draw(batch, Gdx.graphics.getDeltaTime());
 		smoke.allowCompletion();
@@ -98,14 +115,12 @@ public class One {
 	}
 	
 	public void destroy(){
-		if(timer>0.65f){
-			effect.allowCompletion();
-			smoke.allowCompletion();
-			game.gama.delete(body);
-			effect.dispose();
-			smoke.dispose();
-			life = 0;
-		}
+		effect.allowCompletion();
+		smoke.allowCompletion();
+		game.gama.delete(body);
+		effect.dispose();
+		smoke.dispose();
+		life = 0;
 	}
 	
 	

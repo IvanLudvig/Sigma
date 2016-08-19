@@ -5,12 +5,13 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton.ImageButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
 
 import by.coffeecat.er.Constants;
 import by.coffeecat.er.Sigma;
@@ -55,19 +56,14 @@ public class Plasma extends Magic{
 		btn.setSize(50, 50);
 		
         
-		btn.addListener(new DragListener() {
-		    public void drag(InputEvent event, float x, float y, int pointer) {
-		    	btn.moveBy(x - btn.getWidth() / 2, y - btn.getHeight() / 2);
-		    }
+		btn.addListener(new ChangeListener() {
 		    
-		    public void dragStop(InputEvent event, float x, float y, int pointer) {
+	        @Override
+	        public void changed (ChangeEvent event, Actor actor) {
 		    	newOne(count());
 		    	
-		    	Vector2 dest = new Vector2(btn.getX()+game.gama.camera.position.x+200,btn.getY()+game.gama.camera.position.y-210);
-		        game.gama.camera.unproject(new Vector3(dest.x,dest.y,0));
 		        
-		        System.out.println(dest);
-		    	one[count()].cast(end.mage.getPos(), dest);
+		    	one[count()].cast(end.mage.getPos());
 		    	btn.addAction(Actions.moveTo(0, 0));
 				end.gama.mage.minusMana(mana);
 				count++;
