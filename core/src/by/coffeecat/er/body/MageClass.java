@@ -131,7 +131,11 @@ public class MageClass {
 	   }
  	   if(weap!=null){
 	   	     TextureRegion currentFrame3 = anim[4][side-1].getKeyFrame(Mage.stateTime, true); 
-	       	 batch.draw(currentFrame3, (mage.getWorldCenter().x-20/PTM)*PTM,( mage.getWorldCenter().y-15/PTM)*PTM, 35,60);
+	   	     
+	   	     //batch.draw(currentFrame3, (mage.getWorldCenter().x-20/PTM)*PTM,( mage.getWorldCenter().y-15/PTM)*PTM, 35,60);
+	   	     batch.draw(currentFrame3, (mage.getWorldCenter().x-20/PTM)*PTM,( mage.getWorldCenter().y-15/PTM)*PTM, 
+	   	    		 (mage.getWorldCenter().x-20/PTM)*PTM,( mage.getWorldCenter().y-15/PTM)*PTM, 35,60
+	   	    		 , 1, 1, touchpad.getKnobPercentY()*2f);
 	   }
  	   if(walking){
  		   Mage.stateTime += Gdx.graphics.getDeltaTime(); 
@@ -255,7 +259,8 @@ public class MageClass {
     		feeta = brandnew;
     	}
     	
-		props = new HumanProperties(chesta, chesta, chesta, allhp, allhp, allhp, allhp, allhp, allhp, allhp, allhp, magico);
+		props = new HumanProperties(chesta, chesta, chesta, allhp, allhp, allhp, 
+				allhp, allhp, allhp, allhp, allhp, magico);
     }
     
     public void applyWp(Weapon weap){
