@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class MakeAnimation {
 
-    static float stateTime;  
+    public static float stateTime;  
 	Animation anim;
     
 	public MakeAnimation(Texture walkSheet,int FRAME_COLS, final int FRAME_ROWS ){

@@ -74,7 +74,7 @@ public class One {
 			//body.setLinearVelocity((pos.x/PTM - dest.x/PTM) * 50000, (pos.y/PTM - dest.y/PTM)* 50000);
 			//b[count].applyForceToCenter(new Vector2(1,1),  false);
 			//eff[count].setPosition(b[count].getPosition().x, b[count].getPosition().y);
-		    vel = new Vector2(game.gama.mage.lookdir.x*4f, game.gama.mage.lookdir.y*4f);
+		    vel = new Vector2(game.gama.mage.lookdir.x*3f, game.gama.mage.lookdir.y*3f);
 
 		    float speed = 10;
 		    

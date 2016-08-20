@@ -1,11 +1,12 @@
 package by.coffeecat.er.body;
 
-//Древний класс
-//ничего не делает
+import by.coffeecat.er.Constants;
+import by.coffeecat.er.Sigma;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
@@ -19,22 +20,11 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 
-import by.coffeecat.er.Constants;
-import by.coffeecat.er.Sigma;
-
-public class Ryorik extends Human {
+public class Human extends Actor {
 	
-	Texture ryoriktxt;
-	Texture ryorikrighttxt;
-	Texture ryoriklefttxt;
-	Texture ryorikbacktxt;
+	MakeAnimation[] anim = new MakeAnimation[5];
 	
-	MakeAnimation front;
-	MakeAnimation back;
-	MakeAnimation left;
-	MakeAnimation right;
-	
-	static Body ryorik;
+	static Body body;
 	
 	float PTM = Constants.PTM;
 	
@@ -42,38 +32,28 @@ public class Ryorik extends Human {
 	
 	private boolean walking = false;
 	
+	Stage stage;
+	World world;
+	
 	SequenceAction scenarij = new SequenceAction();
 	MoveToAction action;
 	
-	Vector2[] actpos = new Vector2[10];
+	Vector2[] actpos = new Vector2[100];
 	int allActions = 0;
 	
 	Sigma end;
 	Preferences prefs = end.prefs;
 	
-	public Ryorik(World world, Stage stage){
-		super(world, stage);
-		ryorik = createRyorik(world);
-		ryoriktxt = new Texture("characters/ryorik/ryorikfront.png");
-		ryoriklefttxt = new Texture("characters/ryorik/ryorikleft.png");
-		ryorikrighttxt = new Texture("characters/ryorik/ryorikright.png");
-		ryorikbacktxt = new Texture("characters/ryorik/ryorikback.png");
-		
-		front = new MakeAnimation(ryoriktxt, 4, 1);
-		back = new MakeAnimation(ryorikbacktxt, 4, 1);
-		left = new MakeAnimation(ryoriklefttxt, 4, 1);
-		right= new MakeAnimation(ryorikrighttxt, 4, 1);
-		
-
-		this.addAction(scenarij);
-		stage.addActor(this);
-		
+	public Human(World world, Stage stage){
+		//this.anim = anim;
+		this.stage = stage;
+		this.world = world;
 	}
 	
 	float delta = Gdx.graphics.getDeltaTime();
 	
 	public void drawit(SpriteBatch batch, Stage stage){
-		ryorik.setTransform(this.getX()/PTM,  this.getY()/PTM, 0);
+		body.setTransform(this.getX()/PTM,  this.getY()/PTM, 0);
 		delta = Gdx.graphics.getDeltaTime();
 		
 		stage.act(delta);
@@ -81,36 +61,12 @@ public class Ryorik extends Human {
 
 		batch.begin();
 
-		if(side == 1){
-	   	     TextureRegion currentFrame = front.getAnim().getKeyFrame(front.stateTime, true);  
-	   		 if(walking){
-	   			 front.stateTime += Gdx.graphics.getDeltaTime(); 
-	   		 }
-	       	 batch.draw(currentFrame, (ryorik.getWorldCenter().x-20/PTM)*PTM,( ryorik.getWorldCenter().y-30/PTM)*PTM, 35,60);
-	   	 }
-
-	   	 if(side == 2){
-	   	     TextureRegion currentFrame = back.getAnim().getKeyFrame(back.stateTime, true);  
-	   		 if(walking){
-	   			 back.stateTime += Gdx.graphics.getDeltaTime(); 
-	   		 }
-	       	 batch.draw(currentFrame, (ryorik.getWorldCenter().x-20/PTM)*PTM,( ryorik.getWorldCenter().y-30/PTM)*PTM, 35,60);
-	   	 }
-
-	   	 if(side == 3){
-	   	     TextureRegion currentFrame = left.getAnim().getKeyFrame(left.stateTime, true);  
-	   		 if(walking){
-	   			 right.stateTime += Gdx.graphics.getDeltaTime(); 
-	   		 }
-	       	 batch.draw(currentFrame, (ryorik.getWorldCenter().x-20/PTM)*PTM,( ryorik.getWorldCenter().y-30/PTM)*PTM, 35,60);   	 }
-
-	   	 if(side == 4){
-	   	     TextureRegion currentFrame = right.getAnim().getKeyFrame(left.stateTime, true);  
-	   		 if(walking){
-	   			left.stateTime += Gdx.graphics.getDeltaTime(); 
-	   		 }
-	       	 batch.draw(currentFrame, (ryorik.getWorldCenter().x-20/PTM)*PTM,( ryorik.getWorldCenter().y-30/PTM)*PTM, 35,60);
-	   	 }
+  	     TextureRegion currentFrame = anim[side].getAnim().getKeyFrame(anim[side].stateTime, true);  
+   		 if(walking){
+   			 anim[side].stateTime += Gdx.graphics.getDeltaTime(); 
+   		 }
+       	
+   		batch.draw(currentFrame, (body.getWorldCenter().x-20/PTM)*PTM,( body.getWorldCenter().y-30/PTM)*PTM, 35,60);
 		batch.end();
 
 		MoveTo();
@@ -173,7 +129,7 @@ public class Ryorik extends Human {
 		return side;
 	}
 
-	public Body createRyorik(World world){
+	public Body createHuman(World world){
 		BodyDef magic = new BodyDef();
         magic.type = BodyDef.BodyType.DynamicBody;
         magic.position.set(1200/Constants.PTM, 500/Constants.PTM);
@@ -205,8 +161,9 @@ public class Ryorik extends Human {
     
     public Vector2 getPos(){
     	Vector2 pos = new Vector2();
-    	pos.set(new Vector2(ryorik.getPosition().x*PTM, ryorik.getPosition().y*PTM));
+    	pos.set(new Vector2(body.getPosition().x*PTM, body.getPosition().y*PTM));
     	return pos;
     }
 
 }
+

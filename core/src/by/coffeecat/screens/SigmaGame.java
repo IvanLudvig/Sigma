@@ -1,5 +1,16 @@
 package by.coffeecat.screens;
 
+import box2dLight.RayHandler;
+import by.coffeecat.er.CollisionListener;
+import by.coffeecat.er.Constants;
+import by.coffeecat.er.Sigma;
+import by.coffeecat.er.animal.Turtle;
+import by.coffeecat.er.body.Mage;
+import by.coffeecat.er.body.MageClass;
+import by.coffeecat.er.maps.MapHandler;
+import by.coffeecat.er.maps.Mapa;
+import by.coffeecat.er.objects.Item;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
@@ -22,16 +33,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Touchpad;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.Viewport;
-
-import box2dLight.RayHandler;
-import by.coffeecat.er.CollisionListener;
-import by.coffeecat.er.Constants;
-import by.coffeecat.er.Sigma;
-import by.coffeecat.er.body.Mage;
-import by.coffeecat.er.body.MageClass;
-import by.coffeecat.er.maps.MapHandler;
-import by.coffeecat.er.maps.Mapa;
-import by.coffeecat.er.objects.Item;
 
 public class SigmaGame extends ScreenAdapter{
 	
@@ -65,6 +66,7 @@ public class SigmaGame extends ScreenAdapter{
     TextButton pause;
     TextButton ammo;
     Skin skin;
+    Turtle peter;
 
    
     public int paused = 0;
@@ -105,9 +107,14 @@ public class SigmaGame extends ScreenAdapter{
 		
         tiledMapRenderer = new OrthogonalTiledMapRenderer(current.map);
 		mage.create(world, game, batch);
+		
+		
 		world.setContactListener(new CollisionListener());
 
 		mage.setPos(current.magePos);
+		peter = new Turtle(sigma, world, stagee, new Vector2(25/PTM, 10/PTM), batch, 
+				new Vector2(300/PTM, 100/PTM));
+		peter.setPosition(100, 100);
 		
 		current.createLights();
 		pause.addListener(new ChangeListener() {
@@ -174,6 +181,8 @@ public class SigmaGame extends ScreenAdapter{
 	    	stage.act();
 	    	mage.moveMage(touchpad, camera);
 	    	mage.drawit(batch);
+			peter.drawit(batch, stage);
+			System.out.println(peter.getPos());
 			//current.rayHandler.setCombinedMatrix(camera);
 			//current.rayHandler.updateAndRender();
 			game.putMage(mage);
@@ -182,6 +191,7 @@ public class SigmaGame extends ScreenAdapter{
 		    batch.begin();
 		    Array<Body> bodies = new Array<Body>(world.getBodyCount()+50);
 		    world.getBodies(bodies);
+		    
 		    
 		    for(Body body : bodies){
 				if(body.getUserData()!=null){
