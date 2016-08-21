@@ -67,6 +67,7 @@ public class SigmaGame extends ScreenAdapter{
     TextButton ammo;
     Skin skin;
     Turtle peter;
+    Turtle henry;
 
    
     public int paused = 0;
@@ -112,9 +113,21 @@ public class SigmaGame extends ScreenAdapter{
 		world.setContactListener(new CollisionListener());
 
 		mage.setPos(current.magePos);
-		peter = new Turtle(sigma, world, stagee, new Vector2(25/PTM, 10/PTM), batch, 
-				new Vector2(300/PTM, 100/PTM));
-		peter.setPosition(100, 100);
+		peter = new Turtle(sigma, world, stagee, new Vector2(62/PTM, 61/PTM), batch, 
+				new Vector2(140/PTM, 200/PTM));
+		
+		peter.seq(new Vector2(-30, 0));
+		peter.seq(new Vector2(0, -10));
+		peter.seq(new Vector2(+30, 0));
+		peter.seq(new Vector2(30, 10));
+		peter.seq(new Vector2(-30, 0));
+		peter.seq(new Vector2(0, -10));
+		peter.seq(new Vector2(+30, 0));
+		
+		henry = new Turtle(sigma, world, stagee, new Vector2(73/PTM, 70/PTM), batch, 
+				new Vector2(200/PTM, 400/PTM));
+		henry.seq(new Vector2(0, -150));
+		henry.seq(new Vector2(-1, 0));
 		
 		current.createLights();
 		pause.addListener(new ChangeListener() {
@@ -164,7 +177,13 @@ public class SigmaGame extends ScreenAdapter{
 			Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 			 update();
 			MapHandler.renderMap(tiledMapRenderer, batch, camera, world, current.rayHandler);
+			peter.drawit(batch, stage);
+			henry.drawit(batch, stage);
+	    	mage.moveMage(touchpad, camera);
+	    	mage.drawit(batch);
 			MapHandler.renderPad(touchpad, camera, stage);
+			stage.draw();
+	    	stage.act();
 			if(current.bounds==1){
 				MapHandler.setBounds(current.map, camera);
 			}
@@ -177,11 +196,6 @@ public class SigmaGame extends ScreenAdapter{
 				ammo.setText(Integer.toString(mage.weap.clip)+"/"+Integer.toString(mage.weap.maxammo)+"|"+Integer.toString(mage.weap.ammo));
 			}
 			
-			stage.draw();
-	    	stage.act();
-	    	mage.moveMage(touchpad, camera);
-	    	mage.drawit(batch);
-			peter.drawit(batch, stage);
 			System.out.println(peter.getPos());
 			//current.rayHandler.setCombinedMatrix(camera);
 			//current.rayHandler.updateAndRender();
@@ -238,7 +252,7 @@ public class SigmaGame extends ScreenAdapter{
 		}
 		
 		 debugMatrix = batch.getProjectionMatrix().cpy().scale(PTM,PTM, 0);
-		 //renderer.render(world, debugMatrix);
+		 renderer.render(world, debugMatrix);
 
 	}
 

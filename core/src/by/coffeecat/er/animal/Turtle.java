@@ -11,16 +11,18 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
 public class Turtle extends Animal{
-
+	
+	static float speed = 0.1f;
+	
 	public Turtle(Sigma game, World world, Stage stage, Vector2 size,
 			SpriteBatch batch, Vector2 pos) {
-		super(game, world, stage, size, batch, pos);
+		super(game, world, stage, size, batch, pos, speed);
 		
 		this.anim[0] = new MakeAnimation(new Texture("characters/turtle/0.png"), 4, 1);
 		this.anim[1] = new MakeAnimation(new Texture("characters/turtle/1.png"), 4, 1);
 		this.anim[3] = new MakeAnimation(new Texture("characters/turtle/2.png"), 4, 1);
 		this.anim[2]= new MakeAnimation(new Texture("characters/turtle/3.png"), 4, 1);
+		
+
 	}
-
-
 }
