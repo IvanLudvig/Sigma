@@ -4,6 +4,7 @@ import box2dLight.RayHandler;
 import by.coffeecat.er.CollisionListener;
 import by.coffeecat.er.Constants;
 import by.coffeecat.er.Sigma;
+import by.coffeecat.er.animal.BrownTurtle;
 import by.coffeecat.er.animal.Turtle;
 import by.coffeecat.er.body.Mage;
 import by.coffeecat.er.body.MageClass;
@@ -67,7 +68,7 @@ public class SigmaGame extends ScreenAdapter{
     TextButton ammo;
     Skin skin;
     Turtle peter;
-    Turtle henry;
+    BrownTurtle henry;
 
    
     public int paused = 0;
@@ -124,7 +125,7 @@ public class SigmaGame extends ScreenAdapter{
 		peter.seq(new Vector2(0, -10));
 		peter.seq(new Vector2(+30, 0));
 		
-		henry = new Turtle(sigma, world, stagee, new Vector2(73/PTM, 70/PTM), batch, 
+		henry = new BrownTurtle(sigma, world, stagee, new Vector2(73/PTM, 70/PTM), batch, 
 				new Vector2(200/PTM, 400/PTM));
 		henry.seq(new Vector2(0, -150));
 		henry.seq(new Vector2(-1, 0));
