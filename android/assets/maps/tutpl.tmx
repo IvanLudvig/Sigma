@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="left-up" width="45" height="55" tilewidth="32" tileheight="32" nextobjectid="1">
+ <tileset firstgid="1" name="hyptosis_sprites-and-tiles-for-you" tilewidth="32" tileheight="32" tilecount="900">
+  <image source="hyptosis_sprites-and-tiles-for-you.png" trans="ffffff" width="960" height="960"/>
+ </tileset>
+ <tileset firstgid="901" name="hyptosis_til-art-batch-2" tilewidth="32" tileheight="32" tilecount="900">
+  <image source="hyptosis_til-art-batch-2.png" trans="ffffff" width="960" height="960"/>
+ </tileset>
+ <tileset firstgid="1801" name="hyptosis_tile-art-batch-1" tilewidth="32" tileheight="32" tilecount="900">
+  <image source="hyptosis_tile-art-batch-1.png" trans="ffffff" width="960" height="960"/>
+ </tileset>
+ <tileset firstgid="2701" name="hyptosis_tile-art-batch-3" tilewidth="32" tileheight="32" tilecount="900">
+  <image source="hyptosis_tile-art-batch-3.png" trans="ffffff" width="960" height="960"/>
+ </tileset>
+ <tileset firstgid="3601" name="hyptosis_tile-art-batch-4" tilewidth="32" tileheight="32" tilecount="900">
+  <image source="hyptosis_tile-art-batch-4.png" trans="ffffff" width="960" height="960"/>
+ </tileset>
+ <tileset firstgid="4501" name="hyptosis_tile-art-batch-5" tilewidth="32" tileheight="32" tilecount="722">
+  <image source="hyptosis_tile-art-batch-5.png" trans="ffffff" width="636" height="1219"/>
+ </tileset>
+ <tileset firstgid="5223" name="magecity" tilewidth="32" tileheight="32" tilecount="360">
+  <image source="magecity.png" trans="ffffff" width="256" height="1450"/>
+ </tileset>
+ <tileset firstgid="5583" name="TileA1" tilewidth="32" tileheight="32" tilecount="192">
+  <image source="TileA1.png" trans="ffffff" width="512" height="384"/>
+ </tileset>
+ <tileset firstgid="5775" name="tilea4mackeditFBU" tilewidth="32" tileheight="32" tilecount="240">
+  <image source="tilea4mackeditFBU.png" trans="ffffff" width="512" height="480"/>
+ </tileset>
+ <tileset firstgid="6015" name="tilea4mackeditFBU - Copy" tilewidth="32" tileheight="32" tilecount="240">
+  <image source="tilea4mackeditFBU - Copy.png" trans="ffffff" width="512" height="480"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="45" height="55">
+  <data encoding="base64" compression="zlib">
+   eJzt0rkNw0AMRFFWsS7FZ+4z9yFXo8qmNH/A8QYKZMjADx4gjDYghhxXVaMkSZL+3rpVbbDFDnscWj9/t8qAF5544I5ePsfMR+Y44YwLrri1fo7wHbLwL7wJb9PL55iZLopOim6Kjmr4dtnN6Tp0HroPOwi7CDtJL59j5qm7XsJtTN31Em5j6q6XcBuSJEmSJEmSJEm/9AHzFvgn
+  </data>
+ </layer>
+</map>
