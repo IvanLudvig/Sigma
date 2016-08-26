@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" nextobjectid="1">
+ <tileset firstgid="1" name="magecity" tilewidth="32" tileheight="32" tilecount="360">
+  <image source="magecity.png" width="256" height="1450"/>
+ </tileset>
+ <tileset firstgid="361" name="pirate-themed-tilee" tilewidth="32" tileheight="32" tilecount="256">
+  <image source="pirate-themed-tilee.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="617" name="PixelsphereTiles" tilewidth="32" tileheight="32" tilecount="1024">
+  <image source="PixelsphereTiles.png" width="1024" height="1024"/>
+ </tileset>
+ <tileset firstgid="1641" name="plant repack" tilewidth="32" tileheight="32" tilecount="169">
+  <image source="plant repack.png" width="416" height="416"/>
+ </tileset>
+ <tileset firstgid="1810" name="rpg_maker_vx___big_windows_by_ayene_chan-d4ymmaw" tilewidth="32" tileheight="32" tilecount="96">
+  <image source="rpg_maker_vx___big_windows_by_ayene_chan-d4ymmaw.png" width="384" height="256"/>
+ </tileset>
+ <tileset firstgid="1906" name="rpg_maker_vx__modernrtp_tilec_by_painhurt-d3f7sm6" tilewidth="32" tileheight="32" tilecount="256">
+  <image source="rpg_maker_vx__modernrtp_tilec_by_painhurt-d3f7sm6.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="2162" name="steampunkish-tilec" tilewidth="32" tileheight="32" tilecount="256">
+  <image source="steampunkish-tilec.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="2418" name="tilea5" tilewidth="32" tileheight="32" tilecount="128">
+  <image source="tilea5.png" width="256" height="512"/>
+ </tileset>
+ <tileset firstgid="2546" name="tilee" tilewidth="32" tileheight="32" tilecount="256">
+  <image source="tilee.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="2802" name="tilee4" tilewidth="32" tileheight="32" tilecount="225">
+  <image source="tilee4.png" width="480" height="480"/>
+ </tileset>
+ <tileset firstgid="3027" name="tileset_space_game_rpg_maker_xp_by_mataraelfay-d5bzz4z - Copy" tilewidth="32" tileheight="32" tilecount="1944">
+  <image source="tileset_space_game_rpg_maker_xp_by_mataraelfay-d5bzz4z - Copy.png" width="256" height="7807"/>
+ </tileset>
+ <tileset firstgid="4971" name="tora_vx_01" tilewidth="32" tileheight="32" tilecount="256">
+  <image source="tora_vx_01.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="5227" name="tora_vx_02" tilewidth="32" tileheight="32" tilecount="256">
+  <image source="tora_vx_02.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="5483" name="trees-and-bushes" tilewidth="32" tileheight="32" tilecount="45">
+  <image source="trees-and-bushes.png" width="288" height="160"/>
+ </tileset>
+ <tileset firstgid="5528" name="monsters" tilewidth="32" tileheight="32" tilecount="1024">
+  <image source="../characters/monsters.png" width="1024" height="1024"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt1jEKgDAUREFbD+ChbVNYelYRDVgIdv4VpxhIueQRSJuGoQF80DIeqnegRyI9suiRRY8se4tVjxjeRxY9slx79PNV9b6/0SOLHlnuGuhRZ//rznrEmM8e1TvQI5EeWXqPJ9U7/8J9Z9EDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAN21F3Hmf
+  </data>
+ </layer>
+ <layer name="Tile Layer 2" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt1LtKA0EAheHJFitY7xP4QvENTO8lCTZqoo3EWzrjrdUn9TSSKIKVGTTfB38zbDFwmC0F4O857tW+Aasu7QH8E/ttKQfpMB21y/PXrpS3rt69NtVJNjhNZ2nS/vw9v2uWDa7SdbqxR3X32WCRHtJj2tmufSM+DLPHKI29k7XrN6XsNp/PptnhPF3YY+32ssXgyx632eEuzdOW/1Z1T9nhOb14HwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAN96B4IxEtk=
+  </data>
+ </layer>
+</map>

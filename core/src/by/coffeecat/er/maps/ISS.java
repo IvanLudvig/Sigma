@@ -1,4 +1,13 @@
-п»їpackage by.coffeecat.er.maps;
+package by.coffeecat.er.maps;
+
+import box2dLight.ConeLight;
+import box2dLight.Light;
+import box2dLight.RayHandler;
+import by.coffeecat.er.CollisionListener;
+import by.coffeecat.er.Constants;
+import by.coffeecat.er.MapBodyBuilder;
+import by.coffeecat.er.Sigma;
+import by.coffeecat.screens.SigmaGame;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
@@ -15,18 +24,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Array;
 
-import box2dLight.ConeLight;
-import box2dLight.Light;
-import box2dLight.PointLight;
-import box2dLight.RayHandler;
-import by.coffeecat.er.CollisionListener;
-import by.coffeecat.er.Constants;
-import by.coffeecat.er.MapBodyBuilder;
-import by.coffeecat.er.Sigma;
-import by.coffeecat.screens.SigmaGame;
-
-public class Where extends Mapa{
-
+public class ISS extends Mapa{
     public static Array<Body> bodies;
     public static Array<Body> door;
 
@@ -40,10 +38,8 @@ public class Where extends Mapa{
 	Texture Itxt;
 	Image I;
 	Music music;
-	Light light;
-	Light cl;
-	Light l;
-	Light pol;
+	
+	Light[] light = new ConeLight[30];
 	
 	    
 	public void create(Sigma sigma, Stage stage){
@@ -51,19 +47,19 @@ public class Where extends Mapa{
 	    	bounds = 1;
 			world = new World(new Vector2(0,0), true);
 	        batch = new SpriteBatch();
-	        map = new TmxMapLoader().load("maps/first.tmx");
+	        map = new TmxMapLoader().load("maps/untitled.tmx");
 	        Itxt = new Texture("maps/txt/I.png");
 	        I = new Image(Itxt);
-	        magePos = new Vector2(400, 100);
+	        magePos = new Vector2(500, 600);
 	        System.out.println("I've created it. I'm a good class");
 	        
 	        bodies = MapBodyBuilder.buildShapes(map, 100, world, "Object Layer 1");
-	        door = MapBodyBuilder.buildShapes(map, 100, world, "Ladder");
+	        door = MapBodyBuilder.buildShapes(map, 100, world, "door");
 			game.putWorld(world);
 			
 
 			world.setContactListener(new CollisionListener());
-			//game.gama.camera.position.set(400, 1800, 0);// Р’СЃС‘ СЂР°РІРЅРѕ РЅРёС‡РµРіРѕ РЅРµ СЂР°Р±РѕС‚Р°РµС‚
+			//game.gama.camera.position.set(400, 1800, 0);// Всё равно ничего не работает
 			
     		music = Gdx.audio.newMusic(Gdx.files.internal("music/I.mp3"));
     		
@@ -82,7 +78,7 @@ public class Where extends Mapa{
 			I.setPosition(game.gama.camera.position.x-400, game.gama.camera.position.y-240);
 
 			//render
-			rayHandler.setCombinedMatrix(game.camera.combined.scale(PTM, PTM, 0)); //РЅРµ СѓРІРµСЂРµРЅ РІ СЌС‚РѕР№ СЃС‚СЂРѕС‡РєРµ
+			rayHandler.setCombinedMatrix(game.camera.combined.scale(PTM, PTM, 0)); //не уверен в этой строчке
 			rayHandler.updateAndRender();
 			
     		music.play();
@@ -90,18 +86,17 @@ public class Where extends Mapa{
     		music.setVolume(0.6f);
 	    }
 		
-		public void createLights(){ //РІС‹Р·С‹РІР°РµС‚СЃСЏ РІ create
+		public void createLights(){ //вызывается в create
 			rayHandler = new RayHandler(world);
 			rayHandler.setWorld(world);
-			light = new ConeLight(rayHandler, 32, new Color(1,1,1,0.5f), 3, 200/PTM,445/PTM, -90, 85f);
-			cl = new ConeLight(rayHandler, 32, new Color(1,1,1,0.5f), 6, 200/PTM,400/PTM, -90, 85f);
-			l = new ConeLight(rayHandler, 32, new Color(1,1,1,0.5f), 12, 200/PTM, 520/PTM, -90, 85f);
-			pol = new ConeLight(rayHandler, 32, Color.CORAL, 12, 800/PTM, 520/PTM, -90, 85f);
+			
+			for(i = 0;i<light.)
+			light = new ConeLight(rayHandler, 32, new Color(1,1,1,0.5f), 12, 200/PTM,600/PTM, -90, 85f);
+			light = new ConeLight(rayHandler, 32, new Color(1,1,1,0.5f), 12, 200/PTM,800/PTM, -90, 85f);
+			cl = new ConeLight(rayHandler, 32, new Color(1,1,1,0.5f), 12, 200/PTM,400/PTM, -90, 85f);
 			
 			light.setSoftnessLength(0);
-			l.setSoftnessLength(0);
 			cl.setSoftnessLength(0);
-			pol.setSoftnessLength(0);
 			
 	        rayHandler.setAmbientLight(0.3f);
 			rayHandler.setShadows(true);

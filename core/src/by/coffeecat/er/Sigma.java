@@ -1,5 +1,14 @@
 package by.coffeecat.er;
 
+import by.coffeecat.er.body.MageClass;
+import by.coffeecat.er.maps.House1;
+import by.coffeecat.er.maps.House2;
+import by.coffeecat.er.maps.ISS;
+import by.coffeecat.er.maps.Mapa;
+import by.coffeecat.er.objects.Normalizer;
+import by.coffeecat.er.ui.Ui;
+import by.coffeecat.screens.SigmaGame;
+
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
@@ -16,16 +25,6 @@ import com.badlogic.gdx.utils.Base64Coder;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-
-import by.coffeecat.er.body.MageClass;
-import by.coffeecat.er.maps.House1;
-import by.coffeecat.er.maps.House2;
-import by.coffeecat.er.maps.Mapa;
-import by.coffeecat.er.maps.Where;
-import by.coffeecat.er.objects.Normalizer;
-import by.coffeecat.er.ui.Ui;
-import by.coffeecat.screens.Main;
-import by.coffeecat.screens.SigmaGame;
 
 public class Sigma extends Game {
 	
@@ -63,7 +62,7 @@ public class Sigma extends Game {
 		camera = new OrthographicCamera();
 		inputMultiplexer = new InputMultiplexer();
 		camera.setToOrtho(false);
-		maps[0] = new Where();
+		maps[0] = new ISS();
 		//maps[0].create(this, null);
 		maps[1] = new House1();
 		//maps[1].create(this, null);

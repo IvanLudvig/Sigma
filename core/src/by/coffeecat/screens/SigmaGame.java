@@ -67,8 +67,8 @@ public class SigmaGame extends ScreenAdapter{
     TextButton pause;
     TextButton ammo;
     Skin skin;
-    Turtle peter;
-    BrownTurtle henry;
+   // Turtle peter;
+   // BrownTurtle henry;
 
    
     public int paused = 0;
@@ -108,15 +108,15 @@ public class SigmaGame extends ScreenAdapter{
 		
 		
         tiledMapRenderer = new OrthogonalTiledMapRenderer(current.map);
-		mage.create(world, game, batch);
+		mage.create(world, game, batch, current.magePos);
 		
-		
+		System.out.println(current.magePos);
 		world.setContactListener(new CollisionListener());
 
 		mage.setPos(current.magePos);
-		peter = new Turtle(sigma, world, stagee, new Vector2(62/PTM, 61/PTM), batch, 
-				new Vector2(140/PTM, 200/PTM));
-		
+		//peter = new Turtle(sigma, world, stagee, new Vector2(62/PTM, 61/PTM), batch, 
+				//new Vector2(140/PTM, 200/PTM));
+		/*
 		peter.seq(new Vector2(-30, 0));
 		peter.seq(new Vector2(0, -10));
 		peter.seq(new Vector2(+30, 0));
@@ -124,11 +124,13 @@ public class SigmaGame extends ScreenAdapter{
 		peter.seq(new Vector2(-30, 0));
 		peter.seq(new Vector2(0, -10));
 		peter.seq(new Vector2(+30, 0));
+		*/
 		
-		henry = new BrownTurtle(sigma, world, stagee, new Vector2(73/PTM, 70/PTM), batch, 
-				new Vector2(200/PTM, 400/PTM));
-		henry.seq(new Vector2(0, -150));
-		henry.seq(new Vector2(-1, 0));
+		
+//		henry = new BrownTurtle(sigma, world, stagee, new Vector2(73/PTM, 70/PTM), batch, 
+//				new Vector2(200/PTM, 400/PTM));
+		//henry.seq(new Vector2(0, -150));
+		//henry.seq(new Vector2(-1, 0));
 		
 		current.createLights();
 		pause.addListener(new ChangeListener() {
@@ -178,8 +180,8 @@ public class SigmaGame extends ScreenAdapter{
 			Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 			 update();
 			MapHandler.renderMap(tiledMapRenderer, batch, camera, world, current.rayHandler);
-			peter.drawit(batch, stage);
-			henry.drawit(batch, stage);
+			//peter.drawit(batch, stage);
+			//henry.drawit(batch, stage);
 	    	mage.moveMage(touchpad, camera);
 	    	mage.drawit(batch);
 			MapHandler.renderPad(touchpad, camera, stage);
@@ -197,7 +199,7 @@ public class SigmaGame extends ScreenAdapter{
 				ammo.setText(Integer.toString(mage.weap.clip)+"/"+Integer.toString(mage.weap.maxammo)+"|"+Integer.toString(mage.weap.ammo));
 			}
 			
-			System.out.println(peter.getPos());
+		//	System.out.println(peter.getPos());
 			//current.rayHandler.setCombinedMatrix(camera);
 			//current.rayHandler.updateAndRender();
 			game.putMage(mage);
@@ -293,7 +295,7 @@ public class SigmaGame extends ScreenAdapter{
     	 current = change;
     	 world = change.world;
          tiledMapRenderer = new OrthogonalTiledMapRenderer(current.map);
-         mage.create(world, game, batch);
+         mage.create(world, game, batch, current.magePos);
          camera.position.set(400, 800,0);
          mage.setPos(current.magePos);
  		game.inputMultiplexer.addProcessor(stage);

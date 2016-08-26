@@ -9,6 +9,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.ui.Touchpad;
 
@@ -71,10 +74,12 @@ public class MageClass {
 	Music[] footsteps = new Music[10];
 	public HumanProperties props;
 	Sigma game;
+	Vector2 pos;
 	
-	public void create(World world, Sigma game, SpriteBatch batch){
-		mage = Mage.createMage(world);
+	public void create(World world, Sigma game, SpriteBatch batch, Vector2 pos){
 		this.game = game;
+		this.pos = pos;
+		mage = createMage(world);
 		chesta = new DefChest(game);
 		chest = chesta.chest;
 		weap = new Famas(game);
@@ -285,5 +290,26 @@ public class MageClass {
 			}
 		}
     }
+    
+	public  Body createMage(World world){
+		BodyDef magic = new BodyDef();
+        magic.type = BodyDef.BodyType.DynamicBody;
+        magic.position.set(pos.x/Constants.PTM, pos.y/Constants.PTM);
+                                                     
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(16/2/ Constants.PTM, 20/2/ Constants.PTM);
+
+        FixtureDef fixtureDef = new FixtureDef();
+        fixtureDef.shape = shape;
+        fixtureDef.friction = 100f;
+        fixtureDef.density = 100f;
+        fixtureDef.restitution = 0.001f;
+
+        Body mage = world.createBody(magic);
+        mage.createFixture(fixtureDef);
+        shape.dispose();
+        
+        return mage;
+	}
 
 }
