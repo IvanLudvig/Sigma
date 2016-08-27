@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="left-up" width="45" height="55" tilewidth="32" tileheight="32" nextobjectid="1">
+<map version="1.0" orientation="orthogonal" renderorder="left-up" width="90" height="94" tilewidth="32" tileheight="32" nextobjectid="1">
  <tileset firstgid="1" name="hyptosis_sprites-and-tiles-for-you" tilewidth="32" tileheight="32" tilecount="900">
   <image source="hyptosis_sprites-and-tiles-for-you.png" trans="ffffff" width="960" height="960"/>
  </tileset>
@@ -30,9 +30,32 @@
  <tileset firstgid="6015" name="tilea4mackeditFBU - Copy" tilewidth="32" tileheight="32" tilecount="240">
   <image source="tilea4mackeditFBU - Copy.png" trans="ffffff" width="512" height="480"/>
  </tileset>
- <layer name="Tile Layer 1" width="45" height="55">
+ <tileset firstgid="6255" name="pirate-themed-tilee" tilewidth="32" tileheight="32" tilecount="256">
+  <image source="pirate-themed-tilee.png" trans="ffffff" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="6511" name="PixelsphereTiles" tilewidth="32" tileheight="32" tilecount="1024">
+  <image source="PixelsphereTiles.png" trans="ffffff" width="1024" height="1024"/>
+ </tileset>
+ <tileset firstgid="7535" name="tilee4" tilewidth="32" tileheight="32" tilecount="225">
+  <image source="tilee4.png" trans="ffffff" width="480" height="480"/>
+ </tileset>
+ <tileset firstgid="7760" name="rpg_maker_vx__modernrtp_tilec_by_painhurt-d3f7sm6" tilewidth="32" tileheight="32" tilecount="256">
+  <image source="rpg_maker_vx__modernrtp_tilec_by_painhurt-d3f7sm6.png" trans="ffffff" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="8016" name="Woodland_Map_Guide_HighgrassDemo" tilewidth="32" tileheight="32" tilecount="84">
+  <image source="Woodland_Map_Guide_HighgrassDemo.png" trans="ffffff" width="400" height="225"/>
+ </tileset>
+ <tileset firstgid="8100" name="trees-and-bushes" tilewidth="32" tileheight="32" tilecount="45">
+  <image source="trees-and-bushes.png" trans="ffffff" width="288" height="160"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="90" height="94">
   <data encoding="base64" compression="zlib">
-   eJzt0rkNw0AMRFFWsS7FZ+4z9yFXo8qmNH/A8QYKZMjADx4gjDYghhxXVaMkSZL+3rpVbbDFDnscWj9/t8qAF5544I5ePsfMR+Y44YwLrri1fo7wHbLwL7wJb9PL55iZLopOim6Kjmr4dtnN6Tp0HroPOwi7CDtJL59j5qm7XsJtTN31Em5j6q6XcBuSJEmSJEmSJEm/9AHzFvgn
+   eJzt0jFOw1AURcH09LQshXWzg2BvijSRaBGx/vj4FbeYwtbxS+4ft9v3Y9tj+2P38SFWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOupWOup+1Xt27Ls0z53PdWfZ+6/NnY/zBvQIdzjSG9Kz+g5XsdLxXz+n9Myd585lKx11Kx11Kx11Kx11f72dY6vvNHc+h1ff7yp3/nz3t/o3fsVW33Du7Gz1ja5w57+2nunbpM2dzTs/n1ndfbbN/3M2m81ms9lsNrvefgBa8zCU
+  </data>
+ </layer>
+ <layer name="Tile Layer 2" width="90" height="94">
+  <data encoding="base64" compression="zlib">
+   eJzt10tOAlEURdE3jOoxRGREdgSRqCAmKkICCCR81DF5ekygrEpgrWT3b07vlgIAAAAAAAAAAAAAAAAAAAAAAAAAAMC1u+uU0k+DdJ+G6SGNOm1fdlmesudzGqdJeknT9GrnWr1lz/f0kWbpM83Tws61WmbPVVqnr7RJ27Szc6322fOQjumUvtNP+rUzAADA1Xr0EwIANKJblXKTelXbl1w2OzfDzs24rc7xf8bVOQAAaNsf1kYnlg==
   </data>
  </layer>
 </map>
