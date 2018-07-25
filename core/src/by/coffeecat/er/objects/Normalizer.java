@@ -48,6 +48,7 @@ public class Normalizer {
 	Item item;
 	
 	public Item norit(String itemstr){
+		/*
 		switch(itemstr){
 		case "Cool": item = new Cool(game);
 		break;
@@ -61,7 +62,9 @@ public class Normalizer {
 		break;
 		case "Star": item = new Star(game);
 		break;
+		
 		}
+		*/
 		
 		return item;
 	}
@@ -69,10 +72,12 @@ public class Normalizer {
 	Magic magic;
 	
 	public Magic normag(String magicstr){
+		/*
 		switch(magicstr){
 		case "Plasma": magic = new Plasma(game.gama.world, game, game.gama.batch);
 		break;
 		}
+		*/
 		
 		return magic;
 	}

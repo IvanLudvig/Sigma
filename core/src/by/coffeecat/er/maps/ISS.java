@@ -39,7 +39,7 @@ public class ISS extends Mapa{
 	Image I;
 	Music music;
 	
-	Light[] light = new ConeLight[30];
+	Light[][] light = new ConeLight[1][30];
 	
 	    
 	public void create(Sigma sigma, Stage stage){
@@ -56,10 +56,9 @@ public class ISS extends Mapa{
 	        bodies = MapBodyBuilder.buildShapes(map, 100, world, "Object Layer 1");
 	        door = MapBodyBuilder.buildShapes(map, 100, world, "door");
 			game.putWorld(world);
-			
 
 			world.setContactListener(new CollisionListener());
-			//game.gama.camera.position.set(400, 1800, 0);// Всё равно ничего не работает
+			//game.gama.camera.position.set(400, 1800, 0);// пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			
     		music = Gdx.audio.newMusic(Gdx.files.internal("music/I.mp3"));
     		
@@ -78,7 +77,7 @@ public class ISS extends Mapa{
 			I.setPosition(game.gama.camera.position.x-400, game.gama.camera.position.y-240);
 
 			//render
-			rayHandler.setCombinedMatrix(game.camera.combined.scale(PTM, PTM, 0)); //не уверен в этой строчке
+			rayHandler.setCombinedMatrix(game.camera.combined.scale(PTM, PTM, 0)); //пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			rayHandler.updateAndRender();
 			
     		music.play();
@@ -86,17 +85,18 @@ public class ISS extends Mapa{
     		music.setVolume(0.6f);
 	    }
 		
-		public void createLights(){ //вызывается в create
+		public void createLights(){ //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ create
 			rayHandler = new RayHandler(world);
 			rayHandler.setWorld(world);
 			
-			for(i = 0;i<light.)
-			light = new ConeLight(rayHandler, 32, new Color(1,1,1,0.5f), 12, 200/PTM,600/PTM, -90, 85f);
-			light = new ConeLight(rayHandler, 32, new Color(1,1,1,0.5f), 12, 200/PTM,800/PTM, -90, 85f);
-			cl = new ConeLight(rayHandler, 32, new Color(1,1,1,0.5f), 12, 200/PTM,400/PTM, -90, 85f);
+			for(int i = 0;i<light.length;i++){
+				for(int g = 0;g<light[i].length;g++){
+
+				light[i][g] = new ConeLight(rayHandler, 32, new Color(1,1,1,0.5f), 12, 200*g/PTM,600*i/PTM, -90, 85f);
 			
-			light.setSoftnessLength(0);
-			cl.setSoftnessLength(0);
+				light[i][g].setSoftnessLength(0);
+				}
+			}
 			
 	        rayHandler.setAmbientLight(0.3f);
 			rayHandler.setShadows(true);

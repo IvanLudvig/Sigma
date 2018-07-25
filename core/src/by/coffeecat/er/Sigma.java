@@ -3,7 +3,7 @@ package by.coffeecat.er;
 import by.coffeecat.er.body.MageClass;
 import by.coffeecat.er.maps.House1;
 import by.coffeecat.er.maps.House2;
-import by.coffeecat.er.maps.ISS;
+import by.coffeecat.er.maps.Map1;
 import by.coffeecat.er.maps.Mapa;
 import by.coffeecat.er.objects.Normalizer;
 import by.coffeecat.er.ui.Ui;
@@ -62,7 +62,7 @@ public class Sigma extends Game {
 		camera = new OrthographicCamera();
 		inputMultiplexer = new InputMultiplexer();
 		camera.setToOrtho(false);
-		maps[0] = new ISS();
+		maps[0] = new Map1();
 		//maps[0].create(this, null);
 		maps[1] = new House1();
 		//maps[1].create(this, null);
@@ -90,7 +90,7 @@ public class Sigma extends Game {
 		font = skin.getFont("fonta20");
 		ui = new Ui(this, ctrl, null);
 
-		gama = new SigmaGame(this, maps[0], uistage);
+		gama = new SigmaGame(this, maps[1], uistage);
 		setScreen(gama);
 		
 		inputMultiplexer.addProcessor(ctrl);
